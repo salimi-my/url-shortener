@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'URL Shortener',
   description:
-    'URL Shortener is a tool for transforming long, ugly links into nice, memorable and trackable short URLs. Use it to shorten links.'
+    'URL Shortener is a free tool to shorten URLs and generate short links URL shortener allows to create a shortened link making it easy to share.'
 };
 
 export default function RootLayout({
@@ -28,7 +28,8 @@ export default function RootLayout({
           socialButtonsBlockButton: 'focus:shadow-none',
           formFieldInput:
             'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
-          formFieldInputShowPasswordButton: 'focus:shadow-none'
+          formFieldInputShowPasswordButton: 'focus:shadow-none',
+          card: 'shadow-none'
         }
       }}
     >

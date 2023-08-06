@@ -1,11 +1,36 @@
+import { Link, CheckCircle2 } from 'lucide-react';
+
 export default function AuthLayout({
   children
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div className='flex items-center justify-center min-h-screen'>
-      {children}
+    <div className='container relative h-screen flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-3 lg:px-0'>
+      <div className='relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex'>
+        <div className='absolute inset-0 bg-zinc-900'></div>
+        <div className='relative z-20 flex justify-center items-center h-screen w-fit'>
+          <div className='text-left'>
+            <h1 className='flex justify-start items-center font-bold text-2xl pb-6'>
+              <Link className='mr-2 -mt-2' size={40} strokeWidth={3.5} />
+              URL Shortener
+            </h1>
+            <h2 className='text-5xl font-extrabold'>
+              Simple and fast URL shortener!
+            </h2>
+            <p className='text-muted pt-5 font-light'>
+              URL Shortener is a free tool to shorten URLs and generate short
+              links URL shortener allows to create a shortened link making it
+              easy to share.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className='lg-p-8 lg:col-span-2'>
+        <div className='mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]'>
+          {children}
+        </div>
+      </div>
     </div>
   );
 }
