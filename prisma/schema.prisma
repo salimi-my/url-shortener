@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Link {
+  id          String @id @default(uuid())
+  userId      String
+  keyword     String @unique
+  url         String
+  ip          String
+  click       Int
+  log         Log[] @relation("LinkToLog")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Log {
+  id          String @id @default(uuid())
+  linkKeyword String
+  link        Link @relation("LinkToLog", fields: [linkKeyword], references: [keyword])
+  referrer    String
+  userAgent   String
+  ip          String
+  countryCode String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([linkKeyword])
+}
