@@ -1,7 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { dark } from '@clerk/themes';
 import { ClerkProvider } from '@clerk/nextjs';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -29,7 +28,15 @@ export default function RootLayout({
           formFieldInput:
             'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
           formFieldInputShowPasswordButton: 'focus:shadow-none',
-          card: 'shadow-none'
+          card: 'shadow-none',
+          userButtonTrigger: 'focus:shadow-none focus:ring ring-zinc-900/50',
+          badge: 'text-white bg-zinc-900/50',
+          profileSectionPrimaryButton:
+            'hover:bg-zinc-900/50 active:bg-zinc-900/50 text-zinc-900 hover:text-white font-extrabold focus:shadow-none focus:ring-2 ring-zinc-900/50',
+          accordionTriggerButton:
+            'focus:shadow-none focus:ring-2 ring-zinc-900/50',
+          navbarButton: 'focus:shadow-none focus:ring-2 ring-zinc-900/50',
+          avatarImageActionsUpload: 'text-zinc-900/90'
         }
       }}
     >
