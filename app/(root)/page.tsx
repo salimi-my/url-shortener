@@ -1,7 +1,5 @@
-export default function Home() {
-  return (
-    <main>
-      <p>Hello World!</p>
-    </main>
-  );
-}
+const RootPage = () => {
+  return <div>RootPage</div>;
+};
+
+export default RootPage;
