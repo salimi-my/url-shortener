@@ -4,16 +4,15 @@
 
 .cl-card.cl-signIn-start,
 .cl-card.cl-signUp-start {
-  box-shadow: none;
+  @apply shadow-none;
 }
 
 .cl-userProfile-root {
-  width: 100%;
+  @apply w-full;
 }
 
 .cl-userProfile-root .cl-card {
-  width: 100%;
-  @apply rounded-lg shadow-md;
+  @apply rounded-lg shadow-md w-full;
 }
 
 .cl-profileSectionContent button {
