@@ -36,11 +36,13 @@ export default function RootLayout({
           accordionTriggerButton:
             'focus:shadow-none focus:ring-2 ring-zinc-900/50',
           navbarButton: 'focus:shadow-none focus:ring-2 ring-zinc-900/50',
-          avatarImageActionsUpload: 'text-zinc-900/90'
+          avatarImageActionsUpload: 'text-zinc-900/90',
+          formButtonReset:
+            'text-gray-900 hover:bg-secondary focus:shadow-none focus:ring-2 ring-zinc-900/50'
         }
       }}
     >
-      <html lang='en' className=''>
+      <html lang='en'>
         <body className={inter.className}>{children}</body>
       </html>
     </ClerkProvider>
