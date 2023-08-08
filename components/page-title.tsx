@@ -15,7 +15,7 @@ const PageTitle = () => {
     pageTitle = 'My Profile';
   }
 
-  return <h1>{pageTitle}</h1>;
+  return <h1 className='font-bold'>{pageTitle}</h1>;
 };
 
 export default PageTitle;
