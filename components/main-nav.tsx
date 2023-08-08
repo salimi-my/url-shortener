@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { LayoutGrid, List } from 'lucide-react';
+import { LayoutGrid, List, User } from 'lucide-react';
 
 export function MainNav({
   className,
@@ -25,6 +25,12 @@ export function MainNav({
       label: 'Short URL',
       active: pathname === '/admin/url',
       icon: <List size={18} />
+    },
+    {
+      href: '/admin/profile',
+      label: 'My Profile',
+      active: pathname === '/admin/profile',
+      icon: <User size={18} />
     }
   ];
 

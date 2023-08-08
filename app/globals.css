@@ -7,6 +7,23 @@
   box-shadow: none;
 }
 
+.cl-userProfile-root {
+  width: 100%;
+}
+
+.cl-userProfile-root .cl-card {
+  width: 100%;
+  @apply rounded-lg shadow-md;
+}
+
+.cl-profileSectionContent button {
+  @apply focus:shadow-none focus:ring-2 ring-zinc-900/50;
+}
+
+.cl-navbar {
+  @apply border-r border-secondary;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

@@ -11,7 +11,7 @@ export default function AdminLayout({
       <Sidebar />
       <main className='sm:ml-72 min-h-screen bg-gray-50 dark:bg-gray-800'>
         <Navbar />
-        <div className='container mt-8'>{children}</div>
+        <div className='container mt-8 pb-8'>{children}</div>
       </main>
     </>
   );
