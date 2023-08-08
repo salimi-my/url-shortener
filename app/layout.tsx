@@ -28,8 +28,7 @@ export default function RootLayout({
           formFieldInput:
             'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
           formFieldInputShowPasswordButton: 'focus:shadow-none',
-          card: 'shadow-none',
-          userButtonPopoverCard: 'shadow-2xl',
+          userButtonPopoverCard: 'shadow-lg border border-gray-100 rounded-lg',
           userButtonTrigger: 'focus:shadow-none focus:ring ring-zinc-900/50',
           badge: 'text-white bg-zinc-900/50',
           profileSectionPrimaryButton:
