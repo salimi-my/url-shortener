@@ -8,10 +8,7 @@ import { Button } from '@/components/ui/button';
 import { LayoutGrid, List, LogOut, User } from 'lucide-react';
 import { SignOutButton } from '@clerk/nextjs';
 
-export function MainNav({
-  className,
-  ...props
-}: React.HtmlHTMLAttributes<HTMLElement>) {
+const MainNav = ({ className }: React.HtmlHTMLAttributes<HTMLElement>) => {
   const pathname = usePathname();
 
   const routes = [
@@ -64,4 +61,6 @@ export function MainNav({
       </ul>
     </nav>
   );
-}
+};
+
+export default MainNav;

@@ -1,6 +1,6 @@
 import { Link as LinkIcon } from 'lucide-react';
 import Link from 'next/link';
-import { MainNav } from '@/components/main-nav';
+import MainNav from '@/components/main-nav';
 
 const Sidebar = () => {
   return (
