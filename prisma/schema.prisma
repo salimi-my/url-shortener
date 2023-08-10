@@ -16,7 +16,7 @@ model Link {
   keyword     String @unique
   url         String
   ip          String
-  click       Int
+  click       Int @default(0)
   log         Log[] @relation("LinkToLog")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
