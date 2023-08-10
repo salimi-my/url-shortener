@@ -1,7 +1,8 @@
 'use client';
 
 import * as z from 'zod';
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -17,18 +18,30 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form';
+import { AlertCircle } from 'lucide-react';
 
 const formSchema = z.object({
-  url: z.string().toLowerCase().url({ message: 'Invalid URL' }),
+  url: z.string().toLowerCase().url({ message: 'Please enter a valid URL.' }),
   keyword: z
     .string()
     .toLowerCase()
-    .min(3, { message: 'Must be 3 or more characters long' })
+    .min(3, { message: 'Must be 3 or more characters long.' })
 });
 
 const UrlModal = () => {
   const urlModal = useUrlModal();
+  const [ip, setIp] = useState('Unknown');
   const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState('');
+
+  const getIpAddress = async () => {
+    const res = await axios.get('https://api.ipify.org/?format=json');
+    setIp(res.data.ip);
+  };
+
+  useEffect(() => {
+    getIpAddress();
+  }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -39,7 +52,29 @@ const UrlModal = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    setAlert('');
+
+    try {
+      setLoading(true);
+
+      const response = await axios.post('/api/link', values, {
+        headers: {
+          'client-ip-address': ip
+        }
+      });
+
+      if (response.data.success) {
+        console.log(response.data.link);
+      }
+    } catch (error: any) {
+      if (error.response.data.error === 'Please choose different keyword.') {
+        setAlert(error.response.data.error);
+      } else {
+        console.log(error);
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -50,6 +85,12 @@ const UrlModal = () => {
       onClose={urlModal.onClose}
     >
       <div className='py-2 pb-4'>
+        {alert.length > 0 && (
+          <div className='flex items-center bg-red-100 rounded-md border border-destructive p-2 px-3 text-sm text-destructive mb-4'>
+            <AlertCircle className='mr-2' />
+            <p>{alert}</p>
+          </div>
+        )}
         <Form {...form}>
           <form className='space-y-4' onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
@@ -88,6 +129,7 @@ const UrlModal = () => {
             />
             <div className='pt-6 space-x-2 flex items-center justify-end w-full'>
               <Button
+                type='button'
                 disabled={loading}
                 variant='outline'
                 onClick={urlModal.onClose}
