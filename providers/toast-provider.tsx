@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react';
 
-import UrlModal from '@/components/url-modal';
+import { Toaster } from '@/components/ui/toaster';
 
-const ModalProvider = () => {
+const ToastProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -17,9 +17,9 @@ const ModalProvider = () => {
 
   return (
     <>
-      <UrlModal />
+      <Toaster />
     </>
   );
 };
 
-export default ModalProvider;
+export default ToastProvider;

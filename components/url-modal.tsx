@@ -4,13 +4,16 @@ import * as z from 'zod';
 import axios from 'axios';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { AlertCircle } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import isSlug from 'validator/es/lib/isSlug';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Modal } from '@/components/ui/modal';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useUrlModal } from '@/hooks/use-url-modal';
+import { useToast } from '@/components/ui/use-toast';
 import {
   Form,
   FormControl,
@@ -19,7 +22,6 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form';
-import { AlertCircle } from 'lucide-react';
 
 const formSchema = z.object({
   url: z.string().toLowerCase().url({ message: 'Please enter a valid URL.' }),
@@ -33,7 +35,10 @@ const formSchema = z.object({
 });
 
 const UrlModal = () => {
+  const router = useRouter();
   const urlModal = useUrlModal();
+  const { toast } = useToast();
+
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState('');
 
@@ -59,13 +64,25 @@ const UrlModal = () => {
       });
 
       if (response.data.success) {
-        console.log(response.data.link);
+        toast({
+          variant: 'success',
+          title: 'Congratulation!',
+          description: 'Short URL successfully created.'
+        });
       }
+
+      form.reset();
+      urlModal.onClose();
+      router.refresh();
     } catch (error: any) {
       if (error.response.data.error === 'Please choose different keyword.') {
         setAlert(error.response.data.error);
       } else {
-        console.log(error);
+        toast({
+          variant: 'destructive',
+          title: 'Uh oh! Something went wrong.',
+          description: 'There was a problem with your request.'
+        });
       }
     } finally {
       setLoading(false);
