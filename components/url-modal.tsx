@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import isSlug from 'validator/es/lib/isSlug';
 
 import { Modal } from '@/components/ui/modal';
 import { Input } from '@/components/ui/input';
@@ -25,7 +26,10 @@ const formSchema = z.object({
   keyword: z
     .string()
     .toLowerCase()
-    .min(3, { message: 'Must be 3 or more characters long.' })
+    .min(3, { message: 'Please enter 3 or more characters.' })
+    .refine((string) => isSlug(string), {
+      message: 'Please enter valid slug.'
+    })
 });
 
 const UrlModal = () => {
