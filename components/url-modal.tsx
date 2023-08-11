@@ -4,7 +4,6 @@ import * as z from 'zod';
 import axios from 'axios';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { AlertCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import isSlug from 'validator/es/lib/isSlug';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -40,7 +39,6 @@ const UrlModal = () => {
   const { toast } = useToast();
 
   const [loading, setLoading] = useState(false);
-  const [alert, setAlert] = useState('');
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -51,8 +49,6 @@ const UrlModal = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    setAlert('');
-
     try {
       setLoading(true);
 
@@ -75,8 +71,11 @@ const UrlModal = () => {
       urlModal.onClose();
       router.refresh();
     } catch (error: any) {
-      if (error.response.data.error === 'Please choose different keyword.') {
-        setAlert(error.response.data.error);
+      if (error.response.data.error === 'Please enter different keyword.') {
+        form.setError('keyword', {
+          type: 'manual',
+          message: error.response.data.error
+        });
       } else {
         toast({
           variant: 'destructive',
@@ -97,12 +96,6 @@ const UrlModal = () => {
       onClose={urlModal.onClose}
     >
       <div className='py-2 pb-4'>
-        {alert.length > 0 && (
-          <div className='flex items-center bg-red-100 rounded-md border border-destructive p-2 px-3 text-sm text-destructive mb-4'>
-            <AlertCircle className='mr-2' />
-            <p>{alert}</p>
-          </div>
-        )}
         <Form {...form}>
           <form className='space-y-4' onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
