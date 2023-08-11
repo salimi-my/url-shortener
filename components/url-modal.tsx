@@ -2,7 +2,7 @@
 
 import * as z from 'zod';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -30,18 +30,8 @@ const formSchema = z.object({
 
 const UrlModal = () => {
   const urlModal = useUrlModal();
-  const [ip, setIp] = useState('Unknown');
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState('');
-
-  const getIpAddress = async () => {
-    const res = await axios.get('https://api.ipify.org/?format=json');
-    setIp(res.data.ip);
-  };
-
-  useEffect(() => {
-    getIpAddress();
-  }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -57,9 +47,10 @@ const UrlModal = () => {
     try {
       setLoading(true);
 
+      const res = await axios.get('https://api.ipify.org/?format=json');
       const response = await axios.post('/api/link', values, {
         headers: {
-          'client-ip-address': ip
+          'client-ip-address': res.data.ip
         }
       });
 
