@@ -7,11 +7,11 @@
   @apply shadow-none;
 }
 
-.cl-userProfile-root {
+.my-profile .cl-userProfile-root {
   @apply w-full;
 }
 
-.cl-userProfile-root .cl-card {
+.my-profile .cl-userProfile-root .cl-card {
   @apply rounded-lg shadow-md w-full;
 }
 
