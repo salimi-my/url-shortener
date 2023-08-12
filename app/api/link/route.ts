@@ -63,3 +63,30 @@ export async function POST(req: Request) {
     );
   }
 }
+
+export async function GET(_req: Request) {
+  try {
+    const { userId } = auth();
+
+    if (!userId) {
+      return NextResponse.json(
+        { success: false, error: 'Unauthenticated.' },
+        { status: 401 }
+      );
+    }
+
+    const links = await prismadb.link.findMany({
+      where: {
+        userId
+      }
+    });
+
+    return NextResponse.json(links);
+  } catch (error: any) {
+    console.log('[LINK_GET]', error);
+    return NextResponse.json(
+      { success: false, error: error.message },
+      { status: 500 }
+    );
+  }
+}
