@@ -1,15 +1,10 @@
-'use client';
-
-import { Button } from '@/components/ui/button';
-import { useUrlModal } from '@/hooks/use-url-modal';
+import UrlClient from '@/components/url/client';
 
 const UrlPage = () => {
-  const urlModal = useUrlModal();
-
   return (
-    <div>
-      <Button onClick={() => urlModal.onOpen()}>Add URL</Button>
-    </div>
+    <>
+      <UrlClient />
+    </>
   );
 };
 
