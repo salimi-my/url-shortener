@@ -3,7 +3,7 @@ import PageTitle from '@/components/page-title';
 
 const Navbar = () => {
   return (
-    <header className='supports-backdrop-blur:bg-background/60 sticky top-0 z-20 w-full border-b shadow-sm bg-background/95 backdrop-blur'>
+    <header className='supports-backdrop-blur:bg-background/60 sticky top-0 z-20 w-full shadow bg-background/95 backdrop-blur'>
       <div className='mx-8 flex h-14 items-center'>
         <div className='mr-4 hidden md:flex'>
           <PageTitle />
