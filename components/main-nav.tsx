@@ -19,7 +19,7 @@ const MainNav = ({ className }: React.HtmlHTMLAttributes<HTMLElement>) => {
       icon: <LayoutGrid size={18} />
     },
     {
-      href: '/admin/url',
+      href: '/admin/url?page=1&per_page=10',
       label: 'Short URL',
       active: pathname === '/admin/url',
       icon: <List size={18} />

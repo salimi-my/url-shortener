@@ -1,3 +1,5 @@
+'use client';
+
 import type { DataTableSearchableColumn } from '@/types';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
@@ -71,7 +73,6 @@ export function DataTable<TData, TValue>({
   );
 
   // Table states
-  const [isLoading, setIsLoading] = useState(false);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 

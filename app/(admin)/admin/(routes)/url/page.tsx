@@ -7,11 +7,14 @@ import UrlClient from '@/components/url/client';
 
 interface UrlPageProps {
   searchParams: {
-    [key: string]: string | string[] | undefined;
+    page?: string;
+    per_page?: string;
+    sort?: string;
+    keyword?: string;
   };
 }
 
-const UrlPage = async ({ searchParams }: UrlPageProps) => {
+const UrlPage: React.FC<UrlPageProps> = async ({ searchParams }) => {
   const { page, per_page, sort, keyword } = searchParams;
   const { userId } = auth();
 
@@ -96,11 +99,7 @@ const UrlPage = async ({ searchParams }: UrlPageProps) => {
 
   const pageCount = Math.ceil(totalLinks / limit);
 
-  return (
-    <>
-      <UrlClient data={links} pageCount={pageCount} />
-    </>
-  );
+  return <UrlClient data={links} pageCount={pageCount} />;
 };
 
 export default UrlPage;
