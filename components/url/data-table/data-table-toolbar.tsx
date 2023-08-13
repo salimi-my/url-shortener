@@ -1,6 +1,7 @@
 'use client';
 
-import { Cross2Icon, PlusCircledIcon } from '@radix-ui/react-icons';
+import { PlusCircle } from 'lucide-react';
+import { Cross2Icon } from '@radix-ui/react-icons';
 import type { Table } from '@tanstack/react-table';
 
 import { Input } from '@/components/ui/input';
@@ -8,7 +9,6 @@ import { Button } from '@/components/ui/button';
 import { useUrlModal } from '@/hooks/use-url-modal';
 import type { DataTableSearchableColumn } from '@/types';
 import { DataTableViewOptions } from '@/components/url/data-table/data-table-view-options';
-import { PlusCircle } from 'lucide-react';
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;

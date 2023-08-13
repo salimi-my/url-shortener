@@ -1,8 +1,18 @@
+import type { DataTableSearchableColumn } from '@/types';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-import type { DataTableSearchableColumn } from '@/types';
-
+import { useDebounce } from '@/hooks/use-debounce';
+import { DataTableToolbar } from '@/components/url/data-table/data-table-toolbar';
+import { DataTablePagination } from '@/components/url/data-table/data-table-pagination';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from '@/components/ui/table';
 import {
   flexRender,
   getCoreRowModel,
@@ -18,20 +28,6 @@ import {
   type SortingState,
   type VisibilityState
 } from '@tanstack/react-table';
-
-import { useDebounce } from '@/hooks/use-debounce';
-
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow
-} from '@/components/ui/table';
-
-import { DataTablePagination } from '@/components/url/data-table/data-table-pagination';
-import { DataTableToolbar } from '@/components/url/data-table/data-table-toolbar';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

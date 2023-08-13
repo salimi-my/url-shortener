@@ -20,15 +20,6 @@ interface DataTableViewOptionsProps<TData> {
 export function DataTableViewOptions<TData>({
   table
 }: DataTableViewOptionsProps<TData>) {
-  console.log(
-    table
-      .getAllColumns()
-      .filter(
-        (column) =>
-          typeof column.accessorFn !== 'undefined' && column.getCanHide()
-      )
-      .map((column) => column)
-  );
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
