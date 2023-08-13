@@ -1,12 +1,14 @@
 'use client';
 
-import type { DataTableSearchableColumn } from '@/types';
-import { Cross2Icon } from '@radix-ui/react-icons';
+import { Cross2Icon, PlusCircledIcon } from '@radix-ui/react-icons';
 import type { Table } from '@tanstack/react-table';
 
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { useUrlModal } from '@/hooks/use-url-modal';
+import type { DataTableSearchableColumn } from '@/types';
 import { DataTableViewOptions } from '@/components/url/data-table/data-table-view-options';
+import { PlusCircle } from 'lucide-react';
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -17,10 +19,12 @@ export function DataTableToolbar<TData>({
   table,
   searchableColumns = []
 }: DataTableToolbarProps<TData>) {
+  const urlModal = useUrlModal();
+
   const isFiltered = table.getState().columnFilters.length > 0;
 
   return (
-    <div className='flex items-center justify-between p-1'>
+    <div className='flex items-center justify-between py-1'>
       <div className='flex flex-1 items-center space-x-2'>
         {searchableColumns.length > 0 &&
           searchableColumns.map(
@@ -54,7 +58,13 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
       </div>
-      <DataTableViewOptions table={table} />
+      <div className='flex items-center space-x-2'>
+        <DataTableViewOptions table={table} />
+        <Button size='sm' className='h-8' onClick={() => urlModal.onOpen()}>
+          <PlusCircle size={16} className='mr-2' />
+          Add URL
+        </Button>
+      </div>
     </div>
   );
 }

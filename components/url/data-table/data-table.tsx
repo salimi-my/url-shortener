@@ -198,7 +198,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className='w-full space-y-4 overflow-auto'>
+    <div className='w-full space-y-4 overflow-auto px-[1px]'>
       <DataTableToolbar table={table} searchableColumns={searchableColumns} />
       <div className='rounded-md border'>
         <Table>

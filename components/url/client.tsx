@@ -5,8 +5,6 @@ import { Link } from '@prisma/client';
 import { useMemo } from 'react';
 import { type ColumnDef } from '@tanstack/react-table';
 
-import { Button } from '@/components/ui/button';
-import { useUrlModal } from '@/hooks/use-url-modal';
 import { DataTable } from '@/components/url/data-table/data-table';
 import { DataTableColumnHeader } from './data-table/data-table-column-header';
 import {
@@ -23,8 +21,6 @@ interface UrlClientProps {
 }
 
 const UrlClient: React.FC<UrlClientProps> = ({ data, pageCount }) => {
-  const urlModal = useUrlModal();
-
   const columns = useMemo<ColumnDef<Link, unknown>[]>(
     () => [
       {
@@ -86,16 +82,13 @@ const UrlClient: React.FC<UrlClientProps> = ({ data, pageCount }) => {
 
   return (
     <Card className='rounded-lg border-none'>
-      <CardHeader>
+      <CardHeader className='mx-[1px]'>
         <CardTitle className='text-xl font-bold'>Short URL</CardTitle>
         <CardDescription>
           Here&apos;s the list of your short URLs.
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Button className='mb-4' onClick={() => urlModal.onOpen()}>
-          Add URL
-        </Button>
         <DataTable
           columns={columns}
           data={data}
