@@ -82,7 +82,7 @@ const UrlClient: React.FC<UrlClientProps> = ({ data, pageCount }) => {
 
   return (
     <Card className='rounded-lg border-none'>
-      <CardHeader className='mx-[1px]'>
+      <CardHeader className='mx-[1px] pb-9'>
         <CardTitle className='text-xl font-bold'>Short URL</CardTitle>
         <CardDescription>
           Here&apos;s the list of your short URLs.

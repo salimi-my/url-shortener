@@ -47,53 +47,54 @@ const UrlPage = async ({ searchParams }: UrlPageProps) => {
     redirect('sign-in');
   }
 
-  const links = await prismadb.link.findMany({
-    skip: offset,
-    take: limit,
-    where: {
-      userId,
-      OR:
-        typeof keyword === 'string'
-          ? [
-              {
-                keyword: {
-                  contains: keyword
+  const [links, totalLinks] = await prismadb.$transaction([
+    prismadb.link.findMany({
+      skip: offset,
+      take: limit,
+      where: {
+        userId,
+        OR:
+          typeof keyword === 'string'
+            ? [
+                {
+                  keyword: {
+                    contains: keyword
+                  }
+                },
+                {
+                  url: {
+                    contains: keyword
+                  }
                 }
-              },
-              {
-                url: {
-                  contains: keyword
+              ]
+            : undefined
+      },
+      orderBy
+    }),
+    prismadb.link.count({
+      where: {
+        userId,
+        OR:
+          typeof keyword === 'string'
+            ? [
+                {
+                  keyword: {
+                    contains: keyword
+                  }
+                },
+                {
+                  url: {
+                    contains: keyword
+                  }
                 }
-              }
-            ]
-          : undefined
-    },
-    orderBy
-  });
+              ]
+            : undefined
+      },
+      orderBy
+    })
+  ]);
 
-  const allLinks = await prismadb.link.findMany({
-    where: {
-      userId,
-      OR:
-        typeof keyword === 'string'
-          ? [
-              {
-                keyword: {
-                  contains: keyword
-                }
-              },
-              {
-                url: {
-                  contains: keyword
-                }
-              }
-            ]
-          : undefined
-    },
-    orderBy
-  });
-
-  const pageCount = Math.ceil(allLinks.length / limit);
+  const pageCount = Math.ceil(totalLinks / limit);
 
   return (
     <>

@@ -71,7 +71,7 @@ export function DataTable<TData, TValue>({
   );
 
   // Table states
-  const [rowSelection, setRowSelection] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
