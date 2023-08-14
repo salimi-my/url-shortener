@@ -7,9 +7,11 @@ export async function POST(req: Request) {
   try {
     const { userId } = auth();
     const body = await req.json();
-    const ip = req.headers.get('client-ip-address') ?? 'Unknown';
-
     const { url, keyword } = body;
+
+    const ip = req.headers.get('client-ip-address') ?? 'Unknown';
+    let title = req.headers.get('long-url-title') ?? url;
+    title = decodeURI(title);
 
     if (!userId) {
       return NextResponse.json(
@@ -48,8 +50,9 @@ export async function POST(req: Request) {
     const link = await prismadb.link.create({
       data: {
         userId,
-        url,
+        title,
         keyword,
+        url,
         ip
       }
     });

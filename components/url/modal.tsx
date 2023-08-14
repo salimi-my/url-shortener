@@ -52,10 +52,21 @@ const UrlModal = () => {
     try {
       setLoading(true);
 
-      const res = await axios.get('https://api.ipify.org/?format=json');
+      // Get URL title
+      const urlResponse = await axios.get(
+        `https://api.allorigins.win/get?url=${encodeURIComponent(values.url)}`
+      );
+      const matches = urlResponse.data.contents.match(/<title>(.*?)<\/title>/);
+      const title = encodeURI(matches?.[1] ?? values.url);
+
+      // Get IP address
+      const ipResponse = await axios.get('http://ip-api.com/json/');
+      const ip = ipResponse.data.query ?? 'Unknown';
+
       const response = await axios.post('/api/link', values, {
         headers: {
-          'client-ip-address': res.data.ip
+          'client-ip-address': ip,
+          'long-url-title': title
         }
       });
 
@@ -83,6 +94,7 @@ const UrlModal = () => {
           description: 'There was a problem with your request.'
         });
       }
+      console.log(error);
     } finally {
       setLoading(false);
     }

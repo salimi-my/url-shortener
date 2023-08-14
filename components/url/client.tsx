@@ -30,9 +30,15 @@ const UrlClient: React.FC<UrlClientProps> = ({ data, pageCount }) => {
         ),
         cell: ({ row }) => {
           return (
-            <span className='max-w-[500px] truncate font-medium'>
-              {row.getValue('keyword')}
-            </span>
+            <p className='max-w-[500px] truncate font-medium'>
+              <a
+                className='hover:underline'
+                href={`/${row.getValue('keyword')}`}
+                target='_blank'
+              >
+                {row.getValue('keyword')}
+              </a>
+            </p>
           );
         }
       },
@@ -43,15 +49,26 @@ const UrlClient: React.FC<UrlClientProps> = ({ data, pageCount }) => {
         ),
         cell: ({ row }) => {
           return (
-            <span className='max-w-[500px] truncate'>
-              <a
-                className='hover:underline'
-                href={row.getValue('url')}
-                target='_blank'
-              >
-                {row.getValue('url')}
-              </a>
-            </span>
+            <div className='flex flex-col'>
+              <p className='max-w-[400px] truncate font-medium'>
+                <a
+                  className='hover:underline'
+                  href={row.getValue('url')}
+                  target='_blank'
+                >
+                  {row.original.title}
+                </a>
+              </p>
+              <p className='max-w-[400px] truncate text-xs'>
+                <a
+                  className='hover:underline'
+                  href={row.getValue('url')}
+                  target='_blank'
+                >
+                  {row.getValue('url')}
+                </a>
+              </p>
+            </div>
           );
         }
       },

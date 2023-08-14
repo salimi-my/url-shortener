@@ -13,6 +13,7 @@ datasource db {
 model Link {
   id          String @id @default(uuid())
   userId      String
+  title       String
   keyword     String @unique
   url         String
   ip          String
