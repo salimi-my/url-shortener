@@ -1,7 +1,7 @@
 'use client';
 
 import { PlusCircle } from 'lucide-react';
-import { Cross2Icon } from '@radix-ui/react-icons';
+import { Cross2Icon, MagnifyingGlassIcon } from '@radix-ui/react-icons';
 import type { Table } from '@tanstack/react-table';
 
 import { Input } from '@/components/ui/input';
@@ -30,21 +30,26 @@ export function DataTableToolbar<TData>({
           searchableColumns.map(
             (column) =>
               table.getColumn(column.id ? String(column.id) : '') && (
-                <Input
+                <div
                   key={String(column.id)}
-                  placeholder={`Search ${column.title}...`}
-                  value={
-                    (table
-                      .getColumn(String(column.id))
-                      ?.getFilterValue() as string) ?? ''
-                  }
-                  onChange={(event) =>
-                    table
-                      .getColumn(String(column.id))
-                      ?.setFilterValue(event.target.value)
-                  }
-                  className='h-8 w-[150px] lg:w-[250px]'
-                />
+                  className='flex justify-between items-center h-[32px] rounded-md border border-input shadow-sm focus-within:outline-none focus-within:ring-1 focus-within:ring-ring'
+                >
+                  <MagnifyingGlassIcon className='h-4 w-4 mx-2 text-muted-foreground' />
+                  <Input
+                    placeholder={`Search ${column.title}...`}
+                    value={
+                      (table
+                        .getColumn(String(column.id))
+                        ?.getFilterValue() as string) ?? ''
+                    }
+                    onChange={(event) =>
+                      table
+                        .getColumn(String(column.id))
+                        ?.setFilterValue(event.target.value)
+                    }
+                    className='h-8 w-[150px] lg:w-[250px] border-none shadow-none pl-0 focus-visible:ring-0'
+                  />
+                </div>
               )
           )}
         {isFiltered && (
