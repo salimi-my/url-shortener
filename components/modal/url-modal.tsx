@@ -73,8 +73,8 @@ const UrlModal = () => {
       if (response.data.success) {
         toast({
           variant: 'success',
-          title: 'Congratulation!',
-          description: 'Short URL successfully created.'
+          title: 'Success!',
+          description: 'Short URL has been created.'
         });
       }
 
@@ -88,13 +88,13 @@ const UrlModal = () => {
           message: error.response.data.error
         });
       } else {
+        console.log(error);
         toast({
           variant: 'destructive',
           title: 'Uh oh! Something went wrong.',
           description: 'There was a problem with your request.'
         });
       }
-      console.log(error);
     } finally {
       setLoading(false);
     }

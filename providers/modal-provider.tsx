@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import UrlModal from '@/components/url/modal';
+import UrlModal from '@/components/modal/url-modal';
 
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);

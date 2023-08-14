@@ -21,10 +21,10 @@ export function Toaster() {
         return (
           <Toast key={id} {...props}>
             <div className='flex items-center'>
-              {title === 'Congratulation!' && (
+              {title === 'Success!' && (
                 <CheckCircle2 className='mr-2' size={28} />
               )}
-              {title !== 'Congratulation!' && (
+              {title !== 'Success!' && (
                 <AlertCircle className='mr-2' size={28} />
               )}
               <div className='grid gap-1'>

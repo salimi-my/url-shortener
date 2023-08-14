@@ -14,6 +14,7 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
+import { CellAction } from './data-table/data-table-action';
 
 interface UrlClientProps {
   data: Link[];
@@ -92,6 +93,10 @@ const UrlClient: React.FC<UrlClientProps> = ({ data, pageCount }) => {
           <DataTableColumnHeader column={column} title='IP Address' />
         ),
         cell: ({ row }) => row.getValue('ip')
+      },
+      {
+        id: 'action',
+        cell: ({ row }) => <CellAction data={row.original} />
       }
     ],
     []
