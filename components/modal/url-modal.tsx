@@ -71,16 +71,16 @@ const UrlModal = () => {
       });
 
       if (response.data.success) {
+        form.reset();
+        urlModal.onClose();
+        router.refresh();
+
         toast({
           variant: 'success',
           title: 'Success!',
           description: 'Short URL has been created.'
         });
       }
-
-      form.reset();
-      urlModal.onClose();
-      router.refresh();
     } catch (error: any) {
       if (error.response.data.error === 'Please enter different keyword.') {
         form.setError('keyword', {
