@@ -3,6 +3,7 @@
 import * as z from 'zod';
 import axios from 'axios';
 import { useState } from 'react';
+import { Loader2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import isSlug from 'validator/es/lib/isSlug';
@@ -154,7 +155,13 @@ const UrlModal = () => {
                 Cancel
               </Button>
               <Button disabled={loading} type='submit'>
-                Shorten URL
+                {loading && (
+                  <>
+                    <Loader2 className='animate-spin mr-2' size={18} />
+                    Saving...
+                  </>
+                )}
+                {!loading && <>Shorten URL</>}
               </Button>
             </div>
           </form>

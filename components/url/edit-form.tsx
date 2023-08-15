@@ -4,6 +4,7 @@ import * as z from 'zod';
 import axios from 'axios';
 import { useState } from 'react';
 import { Link } from '@prisma/client';
+import { Loader2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import isSlug from 'validator/es/lib/isSlug';
 import { useParams, useRouter } from 'next/navigation';
@@ -144,7 +145,13 @@ const EditForm: React.FC<EditFormProps> = ({ initialData }) => {
             )}
           />
           <Button disabled={loading} className='ml-auto' type='submit'>
-            Save changes
+            {loading && (
+              <>
+                <Loader2 className='animate-spin mr-2' size={18} />
+                Saving...
+              </>
+            )}
+            {!loading && <>Save changes</>}
           </Button>
         </div>
       </form>
