@@ -1,6 +1,7 @@
 import axios from 'axios';
+import Link from 'next/link';
 import { useState } from 'react';
-import { Link } from '@prisma/client';
+import { Link as LinkModel } from '@prisma/client';
 import { Copy, Edit, Trash2 } from 'lucide-react';
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 
@@ -18,7 +19,7 @@ import {
 import { useRouter } from 'next/navigation';
 
 interface CellActionProps {
-  data: Link;
+  data: LinkModel;
 }
 
 export function CellAction({ data }: CellActionProps) {
@@ -81,10 +82,12 @@ export function CellAction({ data }: CellActionProps) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align='end'>
-          <DropdownMenuItem onClick={() => {}}>
-            <Edit className='mr-2' size={14} />
-            View
-          </DropdownMenuItem>
+          <Link href={`/admin/url/${data.id}`}>
+            <DropdownMenuItem>
+              <Edit className='mr-2' size={14} />
+              View
+            </DropdownMenuItem>
+          </Link>
           <DropdownMenuItem onClick={() => onCopy(data.keyword)}>
             <Copy className='mr-2' size={14} />
             Copy
