@@ -42,7 +42,7 @@ export async function POST(req: Request) {
 
     if (currentLink) {
       return NextResponse.json(
-        { success: false, error: 'Please choose different keyword.' },
+        { success: false, error: 'Please enter different keyword.' },
         { status: 400 }
       );
     }

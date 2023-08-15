@@ -26,7 +26,7 @@ interface EditFormProps {
 }
 
 const formSchema = z.object({
-  title: z.string().min(3),
+  title: z.string().min(3, { message: 'Please enter 3 or more characters.' }),
   url: z.string().toLowerCase().url({ message: 'Please enter a valid URL.' }),
   keyword: z
     .string()
@@ -41,7 +41,6 @@ const EditForm: React.FC<EditFormProps> = ({ initialData }) => {
   const params = useParams();
   const router = useRouter();
 
-  const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -96,7 +95,7 @@ const EditForm: React.FC<EditFormProps> = ({ initialData }) => {
           control={form.control}
           name='keyword'
           render={({ field }) => (
-            <FormItem>
+            <FormItem className='relative'>
               <FormLabel>Keyword</FormLabel>
               <FormControl>
                 <Input
@@ -105,7 +104,7 @@ const EditForm: React.FC<EditFormProps> = ({ initialData }) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className='lg:absolute lg:whitespace-nowrap' />
             </FormItem>
           )}
         />
@@ -113,7 +112,7 @@ const EditForm: React.FC<EditFormProps> = ({ initialData }) => {
           control={form.control}
           name='url'
           render={({ field }) => (
-            <FormItem className='lg:col-span-2'>
+            <FormItem className='relative lg:col-span-2'>
               <FormLabel>Original URL</FormLabel>
               <FormControl>
                 <Input
@@ -122,7 +121,7 @@ const EditForm: React.FC<EditFormProps> = ({ initialData }) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className='lg:absolute lg:whitespace-nowrap' />
             </FormItem>
           )}
         />
@@ -131,7 +130,7 @@ const EditForm: React.FC<EditFormProps> = ({ initialData }) => {
             control={form.control}
             name='title'
             render={({ field }) => (
-              <FormItem className='flex-1'>
+              <FormItem className='relative flex-1'>
                 <FormLabel>URL Title</FormLabel>
                 <FormControl>
                   <Input
@@ -140,7 +139,7 @@ const EditForm: React.FC<EditFormProps> = ({ initialData }) => {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className='lg:absolute lg:whitespace-nowrap' />
               </FormItem>
             )}
           />
