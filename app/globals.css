@@ -12,7 +12,7 @@
 }
 
 .my-profile .cl-userProfile-root .cl-card {
-  @apply rounded-lg shadow w-full;
+  @apply rounded-lg shadow w-full max-w-full;
 }
 
 .cl-profileSectionContent button {
