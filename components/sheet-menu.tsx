@@ -1,16 +1,14 @@
-import React from 'react';
+import Link from 'next/link';
+import { LinkIcon, Menu } from 'lucide-react';
+
+import MainNav from '@/components/main-nav';
+import { Button } from '@/components/ui/button';
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
-  SheetTitle,
   SheetTrigger
 } from '@/components/ui/sheet';
-import { Button } from './ui/button';
-import { LinkIcon, Menu } from 'lucide-react';
-import Link from 'next/link';
-import MainNav from './main-nav';
 
 const SheetMenu = () => {
   return (

@@ -1,12 +1,12 @@
 'use client';
 
 import Link from 'next/link';
+import { SignOutButton } from '@clerk/nextjs';
 import { usePathname } from 'next/navigation';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { LayoutGrid, List, LogOut, User } from 'lucide-react';
-import { SignOutButton } from '@clerk/nextjs';
 
 const MainNav = ({ className }: React.HtmlHTMLAttributes<HTMLElement>) => {
   const pathname = usePathname();
