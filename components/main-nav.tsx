@@ -21,7 +21,7 @@ const MainNav = ({ className }: React.HtmlHTMLAttributes<HTMLElement>) => {
     {
       href: '/admin/url?page=1&per_page=10',
       label: 'Short URL',
-      active: pathname === '/admin/url',
+      active: pathname.includes('/admin/url'),
       icon: <List size={18} />
     },
     {
