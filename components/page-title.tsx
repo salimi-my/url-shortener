@@ -11,6 +11,8 @@ const PageTitle = () => {
     pageTitle = 'Dashboard';
   } else if (pathname === '/admin/url') {
     pageTitle = 'Short URL';
+  } else if (pathname.includes('/admin/url/')) {
+    pageTitle = 'Short URL Details';
   } else if (pathname === '/admin/profile') {
     pageTitle = 'My Profile';
   }
