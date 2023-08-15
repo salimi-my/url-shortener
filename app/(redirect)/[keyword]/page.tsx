@@ -47,7 +47,7 @@ const KeywordPage: React.FC<KeywordPageProps> = async ({ params }) => {
       id: link.id
     },
     data: {
-      click: link.click++
+      click: link.click + 1
     }
   });
 
