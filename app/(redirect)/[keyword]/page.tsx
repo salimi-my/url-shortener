@@ -2,6 +2,7 @@ import axios from 'axios';
 import prismadb from '@/lib/prismadb';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
+import NotFound from '@/components/not-found';
 
 interface KeywordPageProps {
   params: { keyword: string };
@@ -19,7 +20,7 @@ const KeywordPage: React.FC<KeywordPageProps> = async ({ params }) => {
   });
 
   if (!link) {
-    return <p>Keyword: {params.keyword} not found!</p>;
+    return <NotFound message={params.keyword} isKeyword={true} />;
   }
 
   // Get IP address
@@ -38,7 +39,7 @@ const KeywordPage: React.FC<KeywordPageProps> = async ({ params }) => {
   });
 
   if (!log) {
-    return <p>Log create error!</p>;
+    return <NotFound message='Log create error!' isKeyword={false} />;
   }
 
   const updatedLink = await prismadb.link.update({
@@ -51,7 +52,7 @@ const KeywordPage: React.FC<KeywordPageProps> = async ({ params }) => {
   });
 
   if (!updatedLink) {
-    return <p>Link update error!</p>;
+    return <NotFound message='Link update error!' isKeyword={false} />;
   }
 
   redirect(link.url);
