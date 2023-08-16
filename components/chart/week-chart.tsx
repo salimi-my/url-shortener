@@ -7,7 +7,7 @@ export const options = {
   pointSize: 4,
   curveType: 'function',
   theme: 'maximized',
-  hAxis: { minTextSpacing: 80, maxTextLines: 1, maxAlternation: 1 },
+  hAxis: { showTextEvery: 2 },
   vAxis: { minValue: 0, format: '#' }
 };
 
