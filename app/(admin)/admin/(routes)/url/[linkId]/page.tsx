@@ -1,5 +1,4 @@
-import prismadb from '@/lib/prismadb';
-
+import { getLink } from '@/actions/get-link';
 import Delete from '@/components/url/delete';
 import EditForm from '@/components/url/edit-form';
 import BackButton from '@/components/back-button';
@@ -12,11 +11,7 @@ import {
 } from '@/components/ui/card';
 
 const LinkPage = async ({ params }: { params: { linkId: string } }) => {
-  const link = await prismadb.link.findUnique({
-    where: {
-      id: params.linkId
-    }
-  });
+  const link = await getLink(params.linkId);
 
   return (
     <>
