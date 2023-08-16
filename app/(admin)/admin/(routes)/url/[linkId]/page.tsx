@@ -1,5 +1,6 @@
 import { getLink } from '@/actions/get-link';
 import { getWeekHit } from '@/actions/get-week-hit';
+import { getMonthHit } from '@/actions/get-month-hit';
 
 import Delete from '@/components/url/delete';
 import EditForm from '@/components/url/edit-form';
@@ -16,6 +17,7 @@ import {
 const LinkPage = async ({ params }: { params: { linkId: string } }) => {
   const link = await getLink(params.linkId);
   const weekData = await getWeekHit(params.linkId);
+  const monthData = await getMonthHit(params.linkId);
 
   return (
     <>
@@ -43,7 +45,7 @@ const LinkPage = async ({ params }: { params: { linkId: string } }) => {
             </CardDescription>
           </CardHeader>
           <CardContent className='pb-9'>
-            <LineChartsTabs weekData={weekData} />
+            <LineChartsTabs weekData={weekData} monthData={monthData} />
           </CardContent>
         </Card>
       </div>
