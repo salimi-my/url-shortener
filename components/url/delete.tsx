@@ -1,13 +1,13 @@
 'use client';
 
+import axios from 'axios';
 import { useState } from 'react';
 import { Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
+import { toast } from '@/components/ui/use-toast';
 import { AlertModal } from '@/components/modal/alert-modal';
-import axios from 'axios';
-import { toast } from '../ui/use-toast';
 
 interface DeleteProps {
   id: string;
