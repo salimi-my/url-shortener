@@ -6,21 +6,23 @@ interface ReferrerData {
 }
 
 export const getReferrerHit = async (
-  linkId: string
+  linkId?: string
 ): Promise<ReferrerData[]> => {
-  const link = await prismadb.link.findUnique({
-    where: {
-      id: linkId
-    }
-  });
+  const link = linkId
+    ? await prismadb.link.findUnique({
+        where: {
+          id: linkId
+        }
+      })
+    : undefined;
 
-  if (!link) {
+  if (linkId && !link) {
     notFound();
   }
 
   const logs = await prismadb.log.findMany({
     where: {
-      linkKeyword: link.keyword
+      ...(linkId ? { linkKeyword: link?.keyword } : {})
     },
     orderBy: {
       createdAt: 'asc'
@@ -28,10 +30,7 @@ export const getReferrerHit = async (
   });
 
   if (logs.length < 1) {
-    return [
-      ['Referrer', 'Hits'],
-      ['No data', 0]
-    ];
+    return [['Referrer', 'Hits']];
   }
 
   // Create a Map to store referrer counts
@@ -39,7 +38,11 @@ export const getReferrerHit = async (
 
   // Iterate through the data array
   logs.forEach((item) => {
-    const { hostname } = new URL(item.referrer); // Get hostname
+    // Get hostname
+    const { hostname } =
+      item.referrer !== 'Direct'
+        ? new URL(item.referrer)
+        : { hostname: 'Direct' };
     if (referrerCounts.has(hostname)) {
       referrerCounts.set(hostname, referrerCounts.get(hostname) + 1);
     } else {

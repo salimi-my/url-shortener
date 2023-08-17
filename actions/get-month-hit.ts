@@ -6,14 +6,16 @@ interface MonthData {
   [index: number]: string | number;
 }
 
-export const getMonthHit = async (linkId: string): Promise<MonthData[]> => {
-  const link = await prismadb.link.findUnique({
-    where: {
-      id: linkId
-    }
-  });
+export const getMonthHit = async (linkId?: string): Promise<MonthData[]> => {
+  const link = linkId
+    ? await prismadb.link.findUnique({
+        where: {
+          id: linkId
+        }
+      })
+    : undefined;
 
-  if (!link) {
+  if (linkId && !link) {
     notFound();
   }
 
@@ -22,7 +24,7 @@ export const getMonthHit = async (linkId: string): Promise<MonthData[]> => {
 
   const logs = await prismadb.log.findMany({
     where: {
-      linkKeyword: link.keyword,
+      ...(linkId ? { linkKeyword: link?.keyword } : {}),
       createdAt: {
         lte: today.toISOString(),
         gte: last29day.toISOString()

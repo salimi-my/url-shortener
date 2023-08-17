@@ -6,14 +6,16 @@ interface WeekData {
   [index: number]: string | number;
 }
 
-export const getWeekHit = async (linkId: string): Promise<WeekData[]> => {
-  const link = await prismadb.link.findUnique({
-    where: {
-      id: linkId
-    }
-  });
+export const getWeekHit = async (linkId?: string): Promise<WeekData[]> => {
+  const link = linkId
+    ? await prismadb.link.findUnique({
+        where: {
+          id: linkId
+        }
+      })
+    : undefined;
 
-  if (!link) {
+  if (linkId && !link) {
     notFound();
   }
 
@@ -22,7 +24,7 @@ export const getWeekHit = async (linkId: string): Promise<WeekData[]> => {
 
   const logs = await prismadb.log.findMany({
     where: {
-      linkKeyword: link.keyword,
+      ...(linkId ? { linkKeyword: link?.keyword } : {}),
       createdAt: {
         lte: today.toISOString(),
         gte: last6day.toISOString()

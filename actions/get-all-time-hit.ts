@@ -6,20 +6,24 @@ interface AllTimeData {
   [index: number]: string | number;
 }
 
-export const getAllTimeHit = async (linkId: string): Promise<AllTimeData[]> => {
-  const link = await prismadb.link.findUnique({
-    where: {
-      id: linkId
-    }
-  });
+export const getAllTimeHit = async (
+  linkId?: string
+): Promise<AllTimeData[]> => {
+  const link = linkId
+    ? await prismadb.link.findUnique({
+        where: {
+          id: linkId
+        }
+      })
+    : undefined;
 
-  if (!link) {
+  if (linkId && !link) {
     notFound();
   }
 
   const logs = await prismadb.log.findMany({
     where: {
-      linkKeyword: link.keyword
+      ...(linkId ? { linkKeyword: link?.keyword } : {})
     },
     orderBy: {
       createdAt: 'asc'

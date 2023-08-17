@@ -6,22 +6,24 @@ interface LocationData {
 }
 
 export const getLocationHit = async (
-  linkId: string
+  linkId?: string
 ): Promise<LocationData[]> => {
-  const link = await prismadb.link.findUnique({
-    where: {
-      id: linkId
-    }
-  });
+  const link = linkId
+    ? await prismadb.link.findUnique({
+        where: {
+          id: linkId
+        }
+      })
+    : undefined;
 
-  if (!link) {
+  if (linkId && !link) {
     notFound();
   }
 
   const logs = await prismadb.log.groupBy({
     by: ['countryCode'],
     where: {
-      linkKeyword: link.keyword
+      ...(linkId ? { linkKeyword: link?.keyword } : {})
     },
     _count: {
       _all: true
