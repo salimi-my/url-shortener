@@ -1,13 +1,19 @@
 import WeekChart from '@/components/chart/week-chart';
 import MonthChart from '@/components/chart/month-chart';
+import AllTimeChart from '@/components/chart/all-time-chart';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 interface WeekChartData {
   weekData: any[];
   monthData: any[];
+  allTimeData: any[];
 }
 
-const LineChartsTabs: React.FC<WeekChartData> = ({ weekData, monthData }) => {
+const LineChartsTabs: React.FC<WeekChartData> = ({
+  weekData,
+  monthData,
+  allTimeData
+}) => {
   return (
     <Tabs defaultValue='week' className='w-full'>
       <TabsList className='grid w-full grid-cols-3'>
@@ -21,7 +27,9 @@ const LineChartsTabs: React.FC<WeekChartData> = ({ weekData, monthData }) => {
       <TabsContent value='month'>
         <MonthChart data={monthData} />
       </TabsContent>
-      <TabsContent value='all'>All time chart</TabsContent>
+      <TabsContent value='all'>
+        <AllTimeChart data={allTimeData} />
+      </TabsContent>
     </Tabs>
   );
 };
