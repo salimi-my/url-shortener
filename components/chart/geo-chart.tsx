@@ -6,14 +6,15 @@ export const options = {
   colorAxis: { minValue: 0, colors: ['#ebf0fa', '#3366cc'] }
 };
 
-interface LocationChartData {
+interface GeoChartData {
+  title: string;
   data: any[];
 }
 
-const LocationChart: React.FC<LocationChartData> = ({ data }) => {
+const GeoChart: React.FC<GeoChartData> = ({ title, data }) => {
   return (
     <>
-      <p className='font-medium'>Overall traffic</p>
+      <p className='font-medium'>{title}</p>
       <Chart
         chartType='GeoChart'
         width='100%'
@@ -25,4 +26,4 @@ const LocationChart: React.FC<LocationChartData> = ({ data }) => {
   );
 };
 
-export default LocationChart;
+export default GeoChart;

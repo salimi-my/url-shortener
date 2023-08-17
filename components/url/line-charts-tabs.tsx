@@ -1,6 +1,4 @@
-import WeekChart from '@/components/line-chart/week-chart';
-import MonthChart from '@/components/line-chart/month-chart';
-import AllTimeChart from '@/components/line-chart/all-time-chart';
+import LineChart from '@/components/chart/line-chart';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 interface WeekChartData {
@@ -22,13 +20,13 @@ const LineChartsTabs: React.FC<WeekChartData> = ({
         <TabsTrigger value='all'>All time</TabsTrigger>
       </TabsList>
       <TabsContent value='week'>
-        <WeekChart data={weekData} />
+        <LineChart title='Number of hits: Last 7 days' data={weekData} />
       </TabsContent>
       <TabsContent value='month'>
-        <MonthChart data={monthData} />
+        <LineChart title='Number of hits: Last 30 days' data={monthData} />
       </TabsContent>
       <TabsContent value='all'>
-        <AllTimeChart data={allTimeData} />
+        <LineChart title='Number of hits: All time' data={allTimeData} />
       </TabsContent>
     </Tabs>
   );

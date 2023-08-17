@@ -7,18 +7,19 @@ export const options = {
   pointSize: 4,
   curveType: 'function',
   theme: 'maximized',
-  hAxis: { showTextEvery: 3 },
+  hAxis: { showTextEvery: 2 },
   vAxis: { minValue: 0, format: '#' }
 };
 
-interface AllTimeChartData {
+interface LineChartData {
+  title: string;
   data: any[];
 }
 
-const AllTimeChart: React.FC<AllTimeChartData> = ({ data }) => {
+const LineChart: React.FC<LineChartData> = ({ title, data }) => {
   return (
     <>
-      <p className='font-medium pt-4'>Number of hits : Last 30 days</p>
+      <p className='font-medium pt-4'>{title}</p>
       <Chart
         className='mt-4'
         chartType='LineChart'
@@ -31,4 +32,4 @@ const AllTimeChart: React.FC<AllTimeChartData> = ({ data }) => {
   );
 };
 
-export default AllTimeChart;
+export default LineChart;

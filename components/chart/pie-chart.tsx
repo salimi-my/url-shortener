@@ -10,16 +10,17 @@ export const options = {
   colors: ['#3366cc', '#4775d1', '#5c85d6', '#7094db', '#85a3e0']
 };
 
-interface LocationChartData {
+interface PieChartData {
+  title: string;
   data: any[];
 }
 
-const TopLocation: React.FC<LocationChartData> = ({ data }) => {
+const PieChart: React.FC<PieChartData> = ({ title, data }) => {
   const topData = data.length > 6 ? data.slice(0, 6) : data;
 
   return (
     <>
-      <p className='font-medium'>Top 5 countries</p>
+      <p className='font-medium'>{title}</p>
       <Chart
         chartType='PieChart'
         data={topData}
@@ -31,4 +32,4 @@ const TopLocation: React.FC<LocationChartData> = ({ data }) => {
   );
 };
 
-export default TopLocation;
+export default PieChart;

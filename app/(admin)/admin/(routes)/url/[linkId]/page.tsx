@@ -7,9 +7,9 @@ import { getLocationHit } from '@/actions/get-location-hit';
 import Delete from '@/components/url/delete';
 import EditForm from '@/components/url/edit-form';
 import BackButton from '@/components/back-button';
-import TopLocation from '@/components/pie-chart/top-location';
+import PieChart from '@/components/chart/pie-chart';
+import GeoChart from '@/components/chart/geo-chart';
 import LineChartsTabs from '@/components/url/line-charts-tabs';
-import LocationChart from '@/components/geo-chart/location-chart';
 import {
   Card,
   CardContent,
@@ -51,8 +51,8 @@ const LinkPage = async ({ params }: { params: { linkId: string } }) => {
             </CardDescription>
           </CardHeader>
           <CardContent className='pb-9 grid space-y-8'>
-            <TopLocation data={locationData} />
-            <LocationChart data={locationData} />
+            <PieChart title='Top 5 countries' data={locationData} />
+            <GeoChart title='Overall traffic' data={locationData} />
           </CardContent>
         </Card>
         <Card className='rounded-lg border-none mt-4'>
