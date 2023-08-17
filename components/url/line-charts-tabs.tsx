@@ -1,6 +1,6 @@
-import WeekChart from '@/components/chart/week-chart';
-import MonthChart from '@/components/chart/month-chart';
-import AllTimeChart from '@/components/chart/all-time-chart';
+import WeekChart from '@/components/line-chart/week-chart';
+import MonthChart from '@/components/line-chart/month-chart';
+import AllTimeChart from '@/components/line-chart/all-time-chart';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 interface WeekChartData {
