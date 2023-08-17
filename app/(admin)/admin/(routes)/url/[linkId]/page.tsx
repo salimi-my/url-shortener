@@ -2,11 +2,13 @@ import { getLink } from '@/actions/get-link';
 import { getWeekHit } from '@/actions/get-week-hit';
 import { getMonthHit } from '@/actions/get-month-hit';
 import { getAllTimeHit } from '@/actions/get-all-time-hit';
+import { getLocationHit } from '@/actions/get-location-hit';
 
 import Delete from '@/components/url/delete';
 import EditForm from '@/components/url/edit-form';
 import BackButton from '@/components/back-button';
 import LineChartsTabs from '@/components/url/line-charts-tabs';
+import LocationChart from '@/components/geo-chart/location-chart';
 import {
   Card,
   CardContent,
@@ -20,6 +22,7 @@ const LinkPage = async ({ params }: { params: { linkId: string } }) => {
   const weekData = await getWeekHit(params.linkId);
   const monthData = await getMonthHit(params.linkId);
   const allTimeData = await getAllTimeHit(params.linkId);
+  const locationData = await getLocationHit(params.linkId);
 
   return (
     <>
@@ -52,6 +55,19 @@ const LinkPage = async ({ params }: { params: { linkId: string } }) => {
               monthData={monthData}
               allTimeData={allTimeData}
             />
+          </CardContent>
+        </Card>
+        <Card className='rounded-lg border-none mt-4'>
+          <CardHeader className='relative mx-[1px]'>
+            <CardTitle className='text-xl font-bold'>
+              Traffic Locations
+            </CardTitle>
+            <CardDescription>
+              The charts below shows historical click location.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className='pb-9'>
+            <LocationChart data={locationData} />
           </CardContent>
         </Card>
       </div>
