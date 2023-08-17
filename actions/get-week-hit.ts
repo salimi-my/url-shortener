@@ -34,7 +34,9 @@ export const getWeekHit = async (linkId: string): Promise<WeekData[]> => {
   });
 
   // Convert the date strings to Date objects
-  const dateObjects = logs.map((item) => new Date(item.createdAt));
+  const dateObjects = logs.map(
+    (item) => new Date(item.createdAt.toISOString().split('T')[0])
+  );
 
   // Create a list of dates for the last 30 days
   const dateList = [];
