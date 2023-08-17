@@ -7,6 +7,7 @@ import { getLocationHit } from '@/actions/get-location-hit';
 import Delete from '@/components/url/delete';
 import EditForm from '@/components/url/edit-form';
 import BackButton from '@/components/back-button';
+import TopLocation from '@/components/pie-chart/top-location';
 import LineChartsTabs from '@/components/url/line-charts-tabs';
 import LocationChart from '@/components/geo-chart/location-chart';
 import {
@@ -39,7 +40,21 @@ const LinkPage = async ({ params }: { params: { linkId: string } }) => {
           <EditForm initialData={link} />
         </CardContent>
       </Card>
-      <div className='grid xl:grid-cols-2 gap-4'>
+      <div className='grid xl:grid-rows-2 xl:grid-cols-2 xl:grid-flow-col gap-4'>
+        <Card className='xl:row-span-2 rounded-lg border-none mt-4'>
+          <CardHeader className='relative mx-[1px]'>
+            <CardTitle className='text-xl font-bold'>
+              Traffic Locations
+            </CardTitle>
+            <CardDescription>
+              The charts below shows historical click location.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className='pb-9 grid space-y-8'>
+            <TopLocation data={locationData} />
+            <LocationChart data={locationData} />
+          </CardContent>
+        </Card>
         <Card className='rounded-lg border-none mt-4'>
           <CardHeader className='relative mx-[1px]'>
             <CardTitle className='text-xl font-bold'>
@@ -55,19 +70,6 @@ const LinkPage = async ({ params }: { params: { linkId: string } }) => {
               monthData={monthData}
               allTimeData={allTimeData}
             />
-          </CardContent>
-        </Card>
-        <Card className='rounded-lg border-none mt-4'>
-          <CardHeader className='relative mx-[1px]'>
-            <CardTitle className='text-xl font-bold'>
-              Traffic Locations
-            </CardTitle>
-            <CardDescription>
-              The charts below shows historical click location.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className='pb-9'>
-            <LocationChart data={locationData} />
           </CardContent>
         </Card>
       </div>
