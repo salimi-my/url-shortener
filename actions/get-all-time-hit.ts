@@ -26,6 +26,13 @@ export const getAllTimeHit = async (linkId: string): Promise<AllTimeData[]> => {
     }
   });
 
+  if (logs.length < 1) {
+    return [
+      ['Time', 'Hits'],
+      ['No data', 0]
+    ];
+  }
+
   // Create a Map to store date counts
   const dateCounts = new Map();
 
@@ -46,5 +53,6 @@ export const getAllTimeHit = async (linkId: string): Promise<AllTimeData[]> => {
   ]);
 
   const allTimeData: AllTimeData[] = [['Time', 'Hits'], ...resultList];
+
   return allTimeData;
 };
