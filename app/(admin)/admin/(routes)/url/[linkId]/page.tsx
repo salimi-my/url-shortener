@@ -3,6 +3,7 @@ import { getWeekHit } from '@/actions/get-week-hit';
 import { getMonthHit } from '@/actions/get-month-hit';
 import { getAllTimeHit } from '@/actions/get-all-time-hit';
 import { getLocationHit } from '@/actions/get-location-hit';
+import { getReferrerHit } from '@/actions/get-referrer-hit';
 
 import Delete from '@/components/url/delete';
 import EditForm from '@/components/url/edit-form';
@@ -24,6 +25,7 @@ const LinkPage = async ({ params }: { params: { linkId: string } }) => {
   const monthData = await getMonthHit(params.linkId);
   const allTimeData = await getAllTimeHit(params.linkId);
   const locationData = await getLocationHit(params.linkId);
+  const referrerData = await getReferrerHit(params.linkId);
 
   return (
     <>
@@ -40,8 +42,8 @@ const LinkPage = async ({ params }: { params: { linkId: string } }) => {
           <EditForm initialData={link} />
         </CardContent>
       </Card>
-      <div className='grid xl:grid-rows-2 xl:grid-cols-2 xl:grid-flow-col gap-4'>
-        <Card className='xl:row-span-2 rounded-lg border-none mt-4'>
+      <div className='grid xl:grid-rows-2 xl:grid-cols-2 xl:grid-flow-col gap-4 mt-4'>
+        <Card className='xl:row-span-2 rounded-lg border-none'>
           <CardHeader className='relative mx-[1px]'>
             <CardTitle className='text-xl font-bold'>
               Traffic Locations
@@ -55,7 +57,7 @@ const LinkPage = async ({ params }: { params: { linkId: string } }) => {
             <GeoChart title='Overall traffic' data={locationData} />
           </CardContent>
         </Card>
-        <Card className='rounded-lg border-none mt-4'>
+        <Card className='rounded-lg border-none'>
           <CardHeader className='relative mx-[1px]'>
             <CardTitle className='text-xl font-bold'>
               Traffic Statistics
@@ -70,6 +72,17 @@ const LinkPage = async ({ params }: { params: { linkId: string } }) => {
               monthData={monthData}
               allTimeData={allTimeData}
             />
+          </CardContent>
+        </Card>
+        <Card className='rounded-lg border-none'>
+          <CardHeader className='relative mx-[1px]'>
+            <CardTitle className='text-xl font-bold'>Traffic Sources</CardTitle>
+            <CardDescription>
+              The charts below shows historical click sources.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className='pb-9'>
+            <PieChart title='Top 5 referrers' data={referrerData} />
           </CardContent>
         </Card>
       </div>
