@@ -1,9 +1,15 @@
-import { UserProfile } from '@clerk/nextjs';
+import ProfileLoading from '@/components/profile-loading';
+import { ClerkLoaded, ClerkLoading, UserProfile } from '@clerk/nextjs';
 
 const ProfilePage = () => {
   return (
     <div className='my-profile'>
-      <UserProfile />
+      <ClerkLoading>
+        <ProfileLoading />
+      </ClerkLoading>
+      <ClerkLoaded>
+        <UserProfile />
+      </ClerkLoaded>
     </div>
   );
 };
