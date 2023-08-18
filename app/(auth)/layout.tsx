@@ -1,4 +1,4 @@
-import { Link, CheckCircle2 } from 'lucide-react';
+import { Link } from 'lucide-react';
 
 export default function AuthLayout({
   children
