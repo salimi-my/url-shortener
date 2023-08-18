@@ -84,7 +84,7 @@ const DashboardPage = async () => {
         </Card>
       </div>
       <div className='grid xl:grid-cols-2 gap-4 mt-4'>
-        <Card className='rounded-lg border-none'>
+        <Card className='rounded-lg border-none min-h-[538px]'>
           <CardHeader className='relative mx-[1px]'>
             <CardTitle className='text-xl font-bold'>
               Traffic Statistics
@@ -117,7 +117,7 @@ const DashboardPage = async () => {
             </div>
           </CardContent>
         </Card>
-        <Card className='xl:col-span-2 rounded-lg border-none'>
+        <Card className='xl:col-span-2 rounded-lg border-none min-h-[538px]'>
           <CardHeader className='relative mx-[1px]'>
             <CardTitle className='text-xl font-bold'>
               Traffic Locations

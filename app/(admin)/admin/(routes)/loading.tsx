@@ -20,7 +20,7 @@ export default function DashboardLoading() {
           </CardHeader>
           <CardContent>
             <Skeleton className='h-7 w-[100px]' />
-            <p className='text-xs text-muted-foreground'>
+            <p className='text-xs text-muted-foreground mt-1'>
               total links all time
             </p>
           </CardContent>
@@ -32,7 +32,9 @@ export default function DashboardLoading() {
           </CardHeader>
           <CardContent>
             <Skeleton className='h-7 w-[100px]' />
-            <p className='text-xs text-muted-foreground'>total hits all time</p>
+            <p className='text-xs text-muted-foreground mt-1'>
+              total hits all time
+            </p>
           </CardContent>
         </Card>
         <Card className='rounded-lg border-none'>
@@ -42,7 +44,9 @@ export default function DashboardLoading() {
           </CardHeader>
           <CardContent>
             <Skeleton className='h-7 w-[100px]' />
-            <p className='text-xs text-muted-foreground'>top link keyword</p>
+            <p className='text-xs text-muted-foreground mt-1'>
+              top link keyword
+            </p>
           </CardContent>
         </Card>
         <Card className='rounded-lg border-none'>
@@ -52,7 +56,9 @@ export default function DashboardLoading() {
           </CardHeader>
           <CardContent>
             <Skeleton className='h-7 w-[100px]' />
-            <p className='text-xs text-muted-foreground'>top hit location</p>
+            <p className='text-xs text-muted-foreground mt-1'>
+              top hit location
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -105,9 +111,9 @@ export default function DashboardLoading() {
           </CardHeader>
           <CardContent className='pb-9 grid xl:grid-cols-2 gap-4'>
             <div className='flex flex-col'>
-              <p className='font-medium'>Top 5 referrers</p>
+              <p className='font-medium'>Top 5 countries</p>
               <div className='flex justify-center items-center'>
-                <Skeleton className='h-[360px] w-[360px] rounded-full mt-8' />
+                <Skeleton className='h-[300px] w-[300px] md:h-[360px] md:w-[360px] rounded-full mt-8' />
               </div>
             </div>
             <div className='flex flex-col'>

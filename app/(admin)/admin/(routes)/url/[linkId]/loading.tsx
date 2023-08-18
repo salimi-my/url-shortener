@@ -14,7 +14,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 export default function UrlDetailLoading() {
   return (
     <>
-      <BackButton />
+      <Skeleton className='h-9 w-[85px]' />
       <Card className='rounded-lg border-none mt-4'>
         <CardHeader className='relative mx-[1px]'>
           <CardTitle className='text-xl font-bold'>Edit Short URL</CardTitle>
@@ -27,16 +27,16 @@ export default function UrlDetailLoading() {
           <div className='flex flex-col lg:grid lg:grid-cols-5 gap-4 lg:items-end'>
             <div className='flex flex-col'>
               <Skeleton className='h-5 w-[70px]' />
-              <Skeleton className='h-9 w-full mt-2' />
+              <Skeleton className='h-9 w-full mt-3' />
             </div>
             <div className='flex flex-col lg:col-span-2'>
               <Skeleton className='h-5 w-[90px]' />
-              <Skeleton className='h-9 w-full mt-2' />
+              <Skeleton className='h-9 w-full mt-3' />
             </div>
             <div className='flex flex-col lg:flex-row gap-8 lg:gap-4 lg:items-end lg:col-span-2'>
               <div className='flex flex-col relative flex-1'>
                 <Skeleton className='h-5 w-[90px]' />
-                <Skeleton className='h-9 w-full mt-2' />
+                <Skeleton className='h-9 w-full mt-3' />
               </div>
               <Skeleton className='h-9 w-[126px] ml-auto' />
             </div>
@@ -55,9 +55,9 @@ export default function UrlDetailLoading() {
           </CardHeader>
           <CardContent className='pb-9 grid space-y-8'>
             <div className='flex flex-col'>
-              <p className='font-medium'>Top 5 referrers</p>
+              <p className='font-medium'>Top 5 countries</p>
               <div className='flex justify-center items-center'>
-                <Skeleton className='h-[360px] w-[360px] rounded-full mt-8' />
+                <Skeleton className='h-[300px] w-[300px] md:h-[360px] md:w-[360px] rounded-full mt-8' />
               </div>
             </div>
             <div className='flex flex-col'>

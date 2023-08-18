@@ -46,7 +46,7 @@ const UrlDetailPage = async ({ params }: { params: { linkId: string } }) => {
         </CardContent>
       </Card>
       <div className='grid xl:grid-rows-2 xl:grid-cols-2 xl:grid-flow-col gap-4 mt-4'>
-        <Card className='xl:row-span-2 rounded-lg border-none'>
+        <Card className='xl:row-span-2 rounded-lg border-none min-h-[1082px]'>
           <CardHeader className='relative mx-[1px]'>
             <CardTitle className='text-xl font-bold'>
               Traffic Locations
