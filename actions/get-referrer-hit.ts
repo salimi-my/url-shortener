@@ -1,3 +1,4 @@
+import { auth } from '@clerk/nextjs';
 import prismadb from '@/lib/prismadb';
 import { notFound } from 'next/navigation';
 
@@ -8,6 +9,12 @@ interface ReferrerData {
 export const getReferrerHit = async (
   linkId?: string
 ): Promise<ReferrerData[]> => {
+  const { userId } = auth();
+
+  if (!userId) {
+    notFound();
+  }
+
   const link = linkId
     ? await prismadb.link.findUnique({
         where: {
@@ -22,7 +29,10 @@ export const getReferrerHit = async (
 
   const logs = await prismadb.log.findMany({
     where: {
-      ...(linkId ? { linkKeyword: link?.keyword } : {})
+      ...(linkId ? { linkKeyword: link?.keyword } : {}),
+      link: {
+        userId: userId
+      }
     },
     orderBy: {
       createdAt: 'asc'

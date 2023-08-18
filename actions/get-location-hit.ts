@@ -1,3 +1,4 @@
+import { auth } from '@clerk/nextjs';
 import prismadb from '@/lib/prismadb';
 import { notFound } from 'next/navigation';
 
@@ -8,6 +9,12 @@ interface LocationData {
 export const getLocationHit = async (
   linkId?: string
 ): Promise<LocationData[]> => {
+  const { userId } = auth();
+
+  if (!userId) {
+    notFound();
+  }
+
   const link = linkId
     ? await prismadb.link.findUnique({
         where: {
@@ -23,7 +30,10 @@ export const getLocationHit = async (
   const logs = await prismadb.log.groupBy({
     by: ['countryCode'],
     where: {
-      ...(linkId ? { linkKeyword: link?.keyword } : {})
+      ...(linkId ? { linkKeyword: link?.keyword } : {}),
+      link: {
+        userId: userId
+      }
     },
     _count: {
       _all: true

@@ -1,4 +1,5 @@
 import { format } from 'date-fns';
+import { auth } from '@clerk/nextjs';
 import prismadb from '@/lib/prismadb';
 import { notFound } from 'next/navigation';
 
@@ -7,6 +8,12 @@ interface WeekData {
 }
 
 export const getWeekHit = async (linkId?: string): Promise<WeekData[]> => {
+  const { userId } = auth();
+
+  if (!userId) {
+    notFound();
+  }
+
   const link = linkId
     ? await prismadb.link.findUnique({
         where: {
@@ -25,6 +32,9 @@ export const getWeekHit = async (linkId?: string): Promise<WeekData[]> => {
   const logs = await prismadb.log.findMany({
     where: {
       ...(linkId ? { linkKeyword: link?.keyword } : {}),
+      link: {
+        userId: userId
+      },
       createdAt: {
         lte: today.toISOString(),
         gte: last6day.toISOString()
