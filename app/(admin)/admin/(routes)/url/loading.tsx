@@ -1,3 +1,4 @@
+import { DataTableLoading } from '@/components/url/data-table/data-table-loading';
 import {
   Card,
   CardContent,
@@ -5,7 +6,6 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
-import { DataTableLoading } from '@/components/url/data-table/data-table-loading';
 
 export default function UrlLoading() {
   return (
