@@ -21,7 +21,7 @@ import {
   CardTitle
 } from '@/components/ui/card';
 
-const LinkPage = async ({ params }: { params: { linkId: string } }) => {
+const UrlDetailPage = async ({ params }: { params: { linkId: string } }) => {
   const link = await getLink(params.linkId);
   const weekData = await getWeekHit(params.linkId);
   const monthData = await getMonthHit(params.linkId);
@@ -98,4 +98,4 @@ const LinkPage = async ({ params }: { params: { linkId: string } }) => {
   );
 };
 
-export default LinkPage;
+export default UrlDetailPage;
