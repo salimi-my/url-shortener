@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { SignOutButton } from '@clerk/nextjs';
 import { usePathname } from 'next/navigation';
+import { ClerkLoaded, ClerkLoading, SignOutButton } from '@clerk/nextjs';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -49,14 +49,24 @@ const MainNav = ({ className }: React.HtmlHTMLAttributes<HTMLElement>) => {
           </li>
         ))}
         <li className='w-full'>
-          <SignOutButton>
+          <ClerkLoading>
             <Button variant='ghost' className='w-full justify-start h-10'>
               <span className='mr-4'>
                 <LogOut size={18} />
               </span>
               Sign Out
             </Button>
-          </SignOutButton>
+          </ClerkLoading>
+          <ClerkLoaded>
+            <SignOutButton>
+              <Button variant='ghost' className='w-full justify-start h-10'>
+                <span className='mr-4'>
+                  <LogOut size={18} />
+                </span>
+                Sign Out
+              </Button>
+            </SignOutButton>
+          </ClerkLoaded>
         </li>
       </ul>
     </nav>
