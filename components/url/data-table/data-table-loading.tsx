@@ -21,11 +21,11 @@ export function DataTableLoading({
     <div className='w-full space-y-3 overflow-auto'>
       <div className='flex w-full items-center justify-between space-x-2 overflow-auto py-1 px-[1px]'>
         <div className='flex flex-1 items-center space-x-2'>
-          <Skeleton className='h-7 w-[150px] lg:w-[250px]' />
+          <Skeleton className='h-7 w-[140px] lg:w-[250px]' />
         </div>
         <div className='flex items-center space-x-2'>
           <Skeleton className='hidden h-7 w-[70px] lg:flex' />
-          <Skeleton className='hidden h-7 w-[90px] lg:flex' />
+          <Skeleton className='h-7 w-[96px] lg:flex' />
         </div>
       </div>
       <div className='rounded-md border px-[1px]'>
