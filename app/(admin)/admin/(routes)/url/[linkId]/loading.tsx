@@ -1,7 +1,4 @@
-import { Trash2 } from 'lucide-react';
-
-import { Button } from '@/components/ui/button';
-import BackButton from '@/components/back-button';
+import { Skeleton } from '@/components/ui/skeleton';
 import {
   Card,
   CardContent,
@@ -9,7 +6,6 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
-import { Skeleton } from '@/components/ui/skeleton';
 
 export default function UrlDetailLoading() {
   return (
