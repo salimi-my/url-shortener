@@ -6,10 +6,9 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className='container relative h-screen flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-3 lg:px-0'>
-      <div className='relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex'>
-        <div className='absolute inset-0 bg-zinc-900'></div>
-        <div className='relative z-20 flex justify-center items-center h-screen w-fit'>
+    <div className='container relative  h-screen flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-3 lg:px-0'>
+      <div className='relative hidden flex-col justify-center bg-muted p-10 text-white dark:border-r lg:flex bg-zinc-900 h-full'>
+        <div className='relative z-20 flex justify-center items-center w-fit'>
           <div className='text-left'>
             <h1 className='flex justify-start items-center font-bold text-2xl pb-6'>
               <Link className='mr-2 -mt-2' size={40} strokeWidth={3.5} />
