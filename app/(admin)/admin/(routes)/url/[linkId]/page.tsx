@@ -10,7 +10,7 @@ import EditForm from '@/components/url/edit-form';
 import BackButton from '@/components/back-button';
 import PieChart from '@/components/chart/pie-chart';
 import GeoChart from '@/components/chart/geo-chart';
-import LineChartsTabs from '@/components/url/line-charts-tabs';
+import StatisticChartsTabs from '@/components/url/statistic-charts-tabs';
 import {
   Card,
   CardContent,
@@ -67,7 +67,7 @@ const LinkPage = async ({ params }: { params: { linkId: string } }) => {
             </CardDescription>
           </CardHeader>
           <CardContent className='pb-9'>
-            <LineChartsTabs
+            <StatisticChartsTabs
               weekData={weekData}
               monthData={monthData}
               allTimeData={allTimeData}

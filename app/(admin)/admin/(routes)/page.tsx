@@ -7,6 +7,9 @@ import { getAllTimeHit } from '@/actions/get-all-time-hit';
 import { getLocationHit } from '@/actions/get-location-hit';
 import { getReferrerHit } from '@/actions/get-referrer-hit';
 
+import PieChart from '@/components/chart/pie-chart';
+import GeoChart from '@/components/chart/geo-chart';
+import StatisticChartsTabs from '@/components/url/statistic-charts-tabs';
 import {
   Card,
   CardContent,
@@ -14,9 +17,6 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
-import PieChart from '@/components/chart/pie-chart';
-import GeoChart from '@/components/chart/geo-chart';
-import LineChartsTabs from '@/components/url/line-charts-tabs';
 
 const DashboardPage = async () => {
   const { totalLinks, totalHits, topLink, topCountry } = await getStatistic();
@@ -91,7 +91,7 @@ const DashboardPage = async () => {
             </CardDescription>
           </CardHeader>
           <CardContent className='pb-9'>
-            <LineChartsTabs
+            <StatisticChartsTabs
               weekData={weekData}
               monthData={monthData}
               allTimeData={allTimeData}
