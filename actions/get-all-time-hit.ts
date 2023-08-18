@@ -50,6 +50,18 @@ export const getAllTimeHit = async (
   // Create a Map to store date counts
   const dateCounts = new Map();
 
+  // Add first date
+  const firstDate = ((d) => new Date(d.setDate(d.getDate() - 2)))(
+    new Date(logs[0].createdAt.toISOString().split('T')[0])
+  );
+  dateCounts.set(firstDate, 0);
+
+  // Add second date
+  const secondDate = ((d) => new Date(d.setDate(d.getDate() - 1)))(
+    new Date(logs[0].createdAt.toISOString().split('T')[0])
+  );
+  dateCounts.set(secondDate, 0);
+
   // Iterate through the data array
   logs.forEach((item) => {
     const date = item.createdAt.toISOString().split('T')[0]; // Convert to 'YYYY-MM-DD' format
