@@ -6,7 +6,7 @@ export const options = {
   legend: 'none',
   pieSliceText: 'label',
   theme: 'maximized',
-  chartArea: { top: '5%', height: '90%' },
+  chartArea: { top: '5%', height: '90%', left: '5%', width: '90%' },
   colors: ['#3366cc', '#4775d1', '#5c85d6', '#7094db', '#85a3e0']
 };
 

@@ -3,12 +3,14 @@ import { Link as LinkIcon, MapPin, MousePointer, Share } from 'lucide-react';
 import { getWeekHit } from '@/actions/get-week-hit';
 import { getMonthHit } from '@/actions/get-month-hit';
 import { getStatistic } from '@/actions/get-statistic';
+import { getDeviceHit } from '@/actions/get-device-hit';
 import { getAllTimeHit } from '@/actions/get-all-time-hit';
 import { getLocationHit } from '@/actions/get-location-hit';
 import { getReferrerHit } from '@/actions/get-referrer-hit';
 
 import PieChart from '@/components/chart/pie-chart';
 import GeoChart from '@/components/chart/geo-chart';
+import DonutChart from '@/components/chart/donut-chart';
 import StatisticChartsTabs from '@/components/url/statistic-charts-tabs';
 import {
   Card,
@@ -22,6 +24,7 @@ const DashboardPage = async () => {
   const { totalLinks, totalHits, topLink, topCountry } = await getStatistic();
   const weekData = await getWeekHit();
   const monthData = await getMonthHit();
+  const deviceData = await getDeviceHit();
   const allTimeData = await getAllTimeHit();
   const locationData = await getLocationHit();
   const referrerData = await getReferrerHit();
@@ -105,8 +108,13 @@ const DashboardPage = async () => {
               The charts below shows historical click sources.
             </CardDescription>
           </CardHeader>
-          <CardContent className='pb-9'>
-            <PieChart title='Top 5 referrers' data={referrerData} />
+          <CardContent className='pb-9 grid xl:grid-cols-2 gap-6'>
+            <div className='flex flex-col'>
+              <DonutChart title='Top 5 referrers' data={referrerData} />
+            </div>
+            <div className='flex flex-col'>
+              <DonutChart title='Device categories' data={deviceData} />
+            </div>
           </CardContent>
         </Card>
         <Card className='xl:col-span-2 rounded-lg border-none'>
@@ -119,10 +127,10 @@ const DashboardPage = async () => {
             </CardDescription>
           </CardHeader>
           <CardContent className='pb-9 grid xl:grid-cols-2 gap-4'>
-            <div>
+            <div className='flex flex-col'>
               <PieChart title='Top 5 countries' data={locationData} />
             </div>
-            <div>
+            <div className='flex flex-col'>
               <GeoChart title='Overall traffic' data={locationData} />
             </div>
           </CardContent>

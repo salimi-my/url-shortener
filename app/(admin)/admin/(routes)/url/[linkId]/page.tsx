@@ -1,6 +1,7 @@
 import { getLink } from '@/actions/get-link';
 import { getWeekHit } from '@/actions/get-week-hit';
 import { getMonthHit } from '@/actions/get-month-hit';
+import { getDeviceHit } from '@/actions/get-device-hit';
 import { getAllTimeHit } from '@/actions/get-all-time-hit';
 import { getLocationHit } from '@/actions/get-location-hit';
 import { getReferrerHit } from '@/actions/get-referrer-hit';
@@ -10,6 +11,7 @@ import EditForm from '@/components/url/edit-form';
 import BackButton from '@/components/back-button';
 import PieChart from '@/components/chart/pie-chart';
 import GeoChart from '@/components/chart/geo-chart';
+import DonutChart from '@/components/chart/donut-chart';
 import StatisticChartsTabs from '@/components/url/statistic-charts-tabs';
 import {
   Card,
@@ -23,6 +25,7 @@ const LinkPage = async ({ params }: { params: { linkId: string } }) => {
   const link = await getLink(params.linkId);
   const weekData = await getWeekHit(params.linkId);
   const monthData = await getMonthHit(params.linkId);
+  const deviceData = await getDeviceHit(params.linkId);
   const allTimeData = await getAllTimeHit(params.linkId);
   const locationData = await getLocationHit(params.linkId);
   const referrerData = await getReferrerHit(params.linkId);
@@ -81,8 +84,13 @@ const LinkPage = async ({ params }: { params: { linkId: string } }) => {
               The charts below shows historical click sources.
             </CardDescription>
           </CardHeader>
-          <CardContent className='pb-9'>
-            <PieChart title='Top 5 referrers' data={referrerData} />
+          <CardContent className='pb-9 grid xl:grid-cols-2 gap-6'>
+            <div className='flex flex-col'>
+              <DonutChart title='Top 5 referrers' data={referrerData} />
+            </div>
+            <div className='flex flex-col'>
+              <DonutChart title='Device categories' data={deviceData} />
+            </div>
           </CardContent>
         </Card>
       </div>

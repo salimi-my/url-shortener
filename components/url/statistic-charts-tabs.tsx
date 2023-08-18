@@ -1,13 +1,13 @@
 import LineChart from '@/components/chart/line-chart';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-interface WeekChartData {
+interface StatisticChartData {
   weekData: any[];
   monthData: any[];
   allTimeData: any[];
 }
 
-const LineChartsTabs: React.FC<WeekChartData> = ({
+const StatisticChartsTabs: React.FC<StatisticChartData> = ({
   weekData,
   monthData,
   allTimeData
@@ -32,4 +32,4 @@ const LineChartsTabs: React.FC<WeekChartData> = ({
   );
 };
 
-export default LineChartsTabs;
+export default StatisticChartsTabs;
