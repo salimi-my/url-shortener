@@ -1,5 +1,11 @@
-import ProfileLoading from '@/components/profile-loading';
+import type { Metadata } from 'next';
 import { ClerkLoaded, ClerkLoading, UserProfile } from '@clerk/nextjs';
+
+import ProfileLoading from '@/components/profile-loading';
+
+export const metadata: Metadata = {
+  title: 'My Profile — URL Shortener'
+};
 
 const ProfilePage = () => {
   return (

@@ -10,7 +10,7 @@ import ToastProvider from '@/providers/toast-provider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'URL Shortener',
+  title: 'URL Shortener — Custom Short Link & Analytics',
   description:
     'URL Shortener is a free tool to shorten URLs and generate short links URL shortener allows to create a shortened link making it easy to share.'
 };

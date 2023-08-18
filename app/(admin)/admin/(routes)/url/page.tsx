@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { auth } from '@clerk/nextjs';
 import { Link } from '@prisma/client';
 import prismadb from '@/lib/prismadb';
@@ -13,6 +14,10 @@ interface UrlPageProps {
     keyword?: string;
   };
 }
+
+export const metadata: Metadata = {
+  title: 'Short URL — URL Shortener'
+};
 
 const UrlPage: React.FC<UrlPageProps> = async ({ searchParams }) => {
   const { page, per_page, sort, keyword } = searchParams;

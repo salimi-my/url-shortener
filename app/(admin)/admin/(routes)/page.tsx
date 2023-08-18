@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Link as LinkIcon, MapPin, MousePointer, Share } from 'lucide-react';
 
 import { getWeekHit } from '@/actions/get-week-hit';
@@ -19,6 +20,10 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
+
+export const metadata: Metadata = {
+  title: 'Dashboard — URL Shortener'
+};
 
 const DashboardPage = async () => {
   const { totalLinks, totalHits, topLink, topCountry } = await getStatistic();

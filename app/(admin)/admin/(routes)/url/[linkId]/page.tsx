@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+
 import { getLink } from '@/actions/get-link';
 import { getWeekHit } from '@/actions/get-week-hit';
 import { getMonthHit } from '@/actions/get-month-hit';
@@ -20,6 +22,10 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
+
+export const metadata: Metadata = {
+  title: 'Short URL Details — URL Shortener'
+};
 
 const UrlDetailPage = async ({ params }: { params: { linkId: string } }) => {
   const link = await getLink(params.linkId);
