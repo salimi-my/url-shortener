@@ -8,7 +8,11 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { LayoutGrid, List, LogOut, User } from 'lucide-react';
 
-const MainNav = ({ className }: React.HtmlHTMLAttributes<HTMLElement>) => {
+interface MainNavProps {
+  isOpen: boolean | undefined;
+}
+
+const MainNav: React.FC<MainNavProps> = ({ isOpen }) => {
   const pathname = usePathname();
 
   const routes = [
@@ -34,7 +38,7 @@ const MainNav = ({ className }: React.HtmlHTMLAttributes<HTMLElement>) => {
 
   return (
     <nav className='mt-8'>
-      <ul className={cn('flex flex-col items-start space-y-1 px-2', className)}>
+      <ul className='flex flex-col items-start space-y-1 px-2'>
         {routes.map((route) => (
           <li className='w-full' key={route.href}>
             <Link href={route.href}>
@@ -42,8 +46,19 @@ const MainNav = ({ className }: React.HtmlHTMLAttributes<HTMLElement>) => {
                 variant={route.active ? 'secondary' : 'ghost'}
                 className='w-full justify-start h-10'
               >
-                <span className='mr-4'>{route.icon}</span>
-                {route.label}
+                <span className={cn(isOpen === false ? '' : 'mr-4')}>
+                  {route.icon}
+                </span>
+                <p
+                  className={cn(
+                    'whitespace-nowrap transition-all ease-in-out duration-300',
+                    isOpen === false
+                      ? '-translate-x-96 opacity-0'
+                      : 'translate-x-0 opacity-100'
+                  )}
+                >
+                  {route.label}
+                </p>
               </Button>
             </Link>
           </li>
@@ -51,19 +66,37 @@ const MainNav = ({ className }: React.HtmlHTMLAttributes<HTMLElement>) => {
         <li className='w-full'>
           <ClerkLoading>
             <Button variant='ghost' className='w-full justify-start h-10'>
-              <span className='mr-4'>
+              <span className={cn(isOpen === false ? '' : 'mr-4')}>
                 <LogOut size={18} />
               </span>
-              Sign Out
+              <p
+                className={cn(
+                  'whitespace-nowrap transition-all ease-in-out duration-300',
+                  isOpen === false
+                    ? '-translate-x-96 opacity-0'
+                    : 'translate-x-0 opacity-100'
+                )}
+              >
+                Sign Out
+              </p>
             </Button>
           </ClerkLoading>
           <ClerkLoaded>
             <SignOutButton>
               <Button variant='ghost' className='w-full justify-start h-10'>
-                <span className='mr-4'>
+                <span className={cn(isOpen === false ? '' : 'mr-4')}>
                   <LogOut size={18} />
                 </span>
-                Sign Out
+                <p
+                  className={cn(
+                    'whitespace-nowrap transition-all ease-in-out duration-300',
+                    isOpen === false
+                      ? '-translate-x-96 opacity-0'
+                      : 'translate-x-0 opacity-100'
+                  )}
+                >
+                  Sign Out
+                </p>
               </Button>
             </SignOutButton>
           </ClerkLoaded>
