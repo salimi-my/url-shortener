@@ -26,7 +26,12 @@ export default function AdminLayout({
         <Navbar />
         <div className='container mt-8 pb-8'>{children}</div>
       </main>
-      <footer className={cn(sidebar?.isOpen === false ? '' : 'lg:ml-72')}>
+      <footer
+        className={cn(
+          ' transition-[margin-left] ease-in-out duration-300',
+          sidebar?.isOpen === false ? 'lg:ml-[90px]' : 'lg:ml-72'
+        )}
+      >
         <Footer />
       </footer>
     </>
