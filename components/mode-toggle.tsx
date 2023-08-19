@@ -1,7 +1,6 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 
 import { cn } from '@/lib/utils';
@@ -18,16 +17,7 @@ interface ToggleProps {
 }
 
 export function ModeToggle({ float }: ToggleProps) {
-  const [mounted, setMounted] = useState(false);
   const { setTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
 
   return (
     <DropdownMenu>
