@@ -1,15 +1,7 @@
 'use client';
 
+import { useTheme } from 'next-themes';
 import { Chart } from 'react-google-charts';
-
-export const options = {
-  legend: 'none',
-  pointSize: 4,
-  curveType: 'function',
-  theme: 'maximized',
-  hAxis: { showTextEvery: 2 },
-  vAxis: { minValue: 0, format: '#' }
-};
 
 interface LineChartData {
   title: string;
@@ -17,6 +9,27 @@ interface LineChartData {
 }
 
 const LineChart: React.FC<LineChartData> = ({ title, data }) => {
+  const { theme } = useTheme();
+
+  const options = {
+    legend: 'none',
+    pointSize: 4,
+    curveType: 'function',
+    theme: 'maximized',
+    hAxis: {
+      showTextEvery: 2,
+      textStyle: { color: theme == 'dark' ? '#ffffff' : '#444444' }
+    },
+    vAxis: {
+      minValue: 0,
+      format: '#',
+      textStyle: { color: theme == 'dark' ? '#ffffff' : '#444444' },
+      baselineColor: theme == 'dark' ? '#dddddd' : '#cccccc',
+      minorGridlines: { color: theme == 'dark' ? '#333333' : '#eeeeee' }
+    },
+    backgroundColor: 'transparent'
+  };
+
   return (
     <>
       <p className='font-medium pt-4'>{title}</p>

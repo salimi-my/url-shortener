@@ -16,11 +16,83 @@
 }
 
 .cl-profileSectionContent button {
-  @apply focus:shadow-none focus:ring-2 ring-zinc-900/50;
+  @apply focus:shadow-none focus:ring-2 ring-zinc-900/50 dark:text-foreground dark:hover:bg-secondary;
 }
 
 .cl-navbar {
   @apply border-r border-secondary;
+}
+
+.cl-navbarButton.cl-active {
+  @apply dark:bg-secondary;
+}
+
+.cl-navbarButton {
+  @apply dark:hover:bg-secondary;
+}
+
+.cl-accordionTriggerButton p {
+  @apply dark:text-secondary-foreground;
+}
+
+.cl-profileSectionContent p {
+  @apply dark:text-foreground;
+}
+
+.cl-formFieldLabel {
+  @apply dark:text-foreground;
+}
+
+.cl-form p {
+  @apply dark:text-foreground;
+}
+
+.cl-formButtonPrimary {
+  @apply dark:disabled:bg-secondary-foreground dark:disabled:text-primary-foreground dark:bg-secondary dark:hover:bg-slate-700 dark:text-secondary-foreground;
+}
+
+.cl-page p {
+  @apply dark:text-foreground;
+}
+
+.cl-breadcrumbsItemBox a {
+  @apply dark:text-foreground;
+}
+
+.cl-avatarImageActionsUpload {
+  @apply dark:text-foreground;
+}
+
+.cl-userPreviewTextContainer p {
+  @apply dark:text-foreground;
+}
+
+.cl-userButtonPopoverActionButton span {
+  @apply dark:text-foreground;
+}
+
+.cl-userButtonPopoverActionButton svg {
+  @apply dark:text-foreground;
+}
+
+.cl-userButtonPopoverActionButton {
+  @apply dark:hover:bg-secondary;
+}
+
+.cl-userButtonPopoverCard {
+  @apply dark:border-secondary;
+}
+
+.cl-socialButtonsBlockButton {
+  @apply dark:hover:bg-secondary dark:text-foreground dark:border-secondary;
+}
+
+.cl-dividerLine {
+  @apply dark:bg-secondary;
+}
+
+.cl-dividerText {
+  @apply dark:text-secondary;
 }
 
 @layer base {

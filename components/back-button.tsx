@@ -11,7 +11,7 @@ const BackButton = () => {
   return (
     <Button
       onClick={() => router.back()}
-      className='bg-white'
+      className='bg-white dark:text-primary-foreground dark:hover:text-primary dark:hover:border-slate-500'
       variant='outline'
     >
       <ChevronLeft size={18} />

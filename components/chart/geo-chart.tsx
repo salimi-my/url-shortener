@@ -3,7 +3,8 @@
 import Chart from 'react-google-charts';
 
 export const options = {
-  colorAxis: { minValue: 0, colors: ['#ebf0fa', '#3366cc'] }
+  colorAxis: { minValue: 0, colors: ['#ebf0fa', '#3366cc'] },
+  backgroundColor: 'transparent'
 };
 
 interface GeoChartData {

@@ -6,6 +6,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 
 import ModalProvider from '@/providers/modal-provider';
 import ToastProvider from '@/providers/toast-provider';
+import { ThemeProvider } from '@/providers/theme-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -39,18 +40,25 @@ export default function RootLayout({
             'hover:bg-zinc-900/50 active:bg-zinc-900/50 text-zinc-900 hover:text-white font-extrabold focus:shadow-none focus:ring-2 ring-zinc-900/50',
           accordionTriggerButton:
             'focus:shadow-none focus:ring-2 ring-zinc-900/50',
-          navbarButton: 'focus:shadow-none focus:ring-2 ring-zinc-900/50',
+          navbarButton:
+            'focus:shadow-none focus:ring-2 ring-zinc-900/50 dark:text-foreground',
           avatarImageActionsUpload: 'text-zinc-900/90',
           formButtonReset:
-            'text-gray-900 hover:bg-secondary focus:shadow-none focus:ring-2 ring-zinc-900/50'
+            'text-gray-900 hover:bg-secondary focus:shadow-none focus:ring-2 ring-zinc-900/50 dark:text-foreground',
+          card: 'dark:bg-background',
+          headerTitle: 'dark:text-foreground',
+          headerSubtitle: 'dark:text-foreground',
+          profileSectionTitleText: 'dark:text-foreground'
         }
       }}
     >
-      <html lang='en'>
-        <body className={inter.className}>
-          <ToastProvider />
-          <ModalProvider />
-          {children}
+      <html lang='en' suppressHydrationWarning>
+        <body className={inter.className} suppressHydrationWarning>
+          <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+            <ToastProvider />
+            <ModalProvider />
+            {children}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
