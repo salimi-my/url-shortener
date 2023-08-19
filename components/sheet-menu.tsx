@@ -20,12 +20,18 @@ const SheetMenu = () => {
       </SheetTrigger>
       <SheetContent className='sm:w-72 px-3' side='left'>
         <SheetHeader>
-          <h1 className='flex justify-center items-center font-extrabold text-xl pb-2 pt-1'>
-            <LinkIcon className='mr-1 -mt-1' size={28} strokeWidth={3} />
-            <Link href='/admin'>URL Shortener</Link>
-          </h1>
+          <Button
+            className='flex justify-center items-center pb-2 pt-1'
+            variant='link'
+            asChild
+          >
+            <Link href='/admin'>
+              <LinkIcon className='mr-2 -mt-1' size={28} strokeWidth={3} />
+              <h1 className='font-extrabold text-lg'>URL Shortener</h1>
+            </Link>
+          </Button>
         </SheetHeader>
-        <MainNav />
+        <MainNav isOpen />
       </SheetContent>
     </Sheet>
   );
