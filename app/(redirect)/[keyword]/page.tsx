@@ -24,8 +24,8 @@ const KeywordPage: React.FC<KeywordPageProps> = async ({ params }) => {
   }
 
   // Get IP address
-  const ipResponse = await axios.get('http://ip-api.com/json/');
-  const ip = ipResponse.data.query ?? 'Unknown';
+  const ipResponse = await axios.get('https://freeipapi.com/api/json/');
+  const ip = ipResponse.data.ipAddress ?? 'Unknown';
   const countryCode = ipResponse.data.countryCode ?? 'Unknown';
 
   const log = await prismadb.log.create({
