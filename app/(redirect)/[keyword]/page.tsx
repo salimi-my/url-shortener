@@ -1,4 +1,3 @@
-import axios from 'axios';
 import prismadb from '@/lib/prismadb';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -13,6 +12,22 @@ const KeywordPage: React.FC<KeywordPageProps> = async ({ params }) => {
   const referer = headersList.get('referer');
   const userAgent = headersList.get('user-agent');
 
+  // Get IP address
+  let ip = headersList.get('x-real-ip');
+  const forwardedFor = headersList.get('x-forwarded-for');
+  if (!ip && forwardedFor) {
+    ip = forwardedFor.split(',').at(0) ?? null;
+  }
+
+  // Get country code from Vercel
+  let countryCode = headersList.get('x-vercel-ip-country-region');
+
+  // Get country code from Cloudflare
+  if (!countryCode) countryCode = headersList.get('cf-ipcountry');
+
+  // Get country code from AWS CloudFront
+  if (!countryCode) countryCode = headersList.get('cloudfront-viewer-country');
+
   const link = await prismadb.link.findUnique({
     where: {
       keyword: params.keyword
@@ -23,18 +38,13 @@ const KeywordPage: React.FC<KeywordPageProps> = async ({ params }) => {
     return <NotFound message={params.keyword} isKeyword={true} />;
   }
 
-  // Get IP address
-  const ipResponse = await axios.get('https://freeipapi.com/api/json/');
-  const ip = ipResponse.data.ipAddress ?? 'Unknown';
-  const countryCode = ipResponse.data.countryCode ?? 'Unknown';
-
   const log = await prismadb.log.create({
     data: {
       linkKeyword: link.keyword,
       referrer: referer ?? 'Direct',
       userAgent: userAgent ?? 'Unknown',
-      ip,
-      countryCode
+      ip: ip ?? 'Unknown',
+      countryCode: countryCode ?? 'Unknown'
     }
   });
 

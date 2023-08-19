@@ -9,63 +9,61 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { url, keyword } = body;
 
+    // Get IP address
     let ip = req.headers.get('x-real-ip');
-    let forwardedFor = req.headers.get('x-forwarded-for');
+    const forwardedFor = req.headers.get('x-forwarded-for');
+    if (!ip && forwardedFor) {
+      ip = forwardedFor.split(',').at(0) ?? null;
+    }
 
-    return NextResponse.json(
-      { success: false, ip, forwardedFor },
-      { status: 400 }
-    );
+    let title = req.headers.get('long-url-title') ?? url;
+    title = decodeURI(title);
 
-    // const ip = req.headers.get('client-ip-address') ?? 'Unknown';
-    // let title = req.headers.get('long-url-title') ?? url;
-    // title = decodeURI(title);
+    if (!userId) {
+      return NextResponse.json(
+        { success: false, error: 'Unauthenticated.' },
+        { status: 401 }
+      );
+    }
 
-    // if (!userId) {
-    //   return NextResponse.json(
-    //     { success: false, error: 'Unauthenticated.' },
-    //     { status: 401 }
-    //   );
-    // }
+    if (!url) {
+      return NextResponse.json(
+        { success: false, error: 'URL is required.' },
+        { status: 400 }
+      );
+    }
 
-    // if (!url) {
-    //   return NextResponse.json(
-    //     { success: false, error: 'URL is required.' },
-    //     { status: 400 }
-    //   );
-    // }
+    if (!keyword) {
+      return NextResponse.json(
+        { success: false, error: 'Keyword is required.' },
+        { status: 400 }
+      );
+    }
 
-    // if (!keyword) {
-    //   return NextResponse.json(
-    //     { success: false, error: 'Keyword is required.' },
-    //     { status: 400 }
-    //   );
-    // }
+    const currentLink = await prismadb.link.findUnique({
+      where: {
+        keyword
+      }
+    });
 
-    // const currentLink = await prismadb.link.findUnique({
-    //   where: {
-    //     keyword
-    //   }
-    // });
+    if (currentLink) {
+      return NextResponse.json(
+        { success: false, error: 'Please enter different keyword.' },
+        { status: 400 }
+      );
+    }
 
-    // if (currentLink) {
-    //   return NextResponse.json(
-    //     { success: false, error: 'Please enter different keyword.' },
-    //     { status: 400 }
-    //   );
-    // }
+    const link = await prismadb.link.create({
+      data: {
+        userId,
+        title,
+        keyword,
+        url,
+        ip: ip ?? 'Unknown'
+      }
+    });
 
-    // const link = await prismadb.link.create({
-    //   data: {
-    //     userId,
-    //     title,
-    //     keyword,
-    //     url,
-    //     ip
-    //   }
-    // });
-
-    // return NextResponse.json({ success: true, link });
+    return NextResponse.json({ success: true, link });
   } catch (error: any) {
     console.log('[LINK_POST]', error);
     return NextResponse.json(

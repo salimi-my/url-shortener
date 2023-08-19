@@ -60,13 +60,8 @@ const UrlModal = () => {
       const matches = urlResponse.data.contents.match(/<title>(.*?)<\/title>/);
       const title = encodeURI(matches?.[1] ?? values.url);
 
-      // Get IP address
-      const ipResponse = await axios.get('https://freeipapi.com/api/json/');
-      const ip = ipResponse.data.ipAddress ?? 'Unknown';
-
       const response = await axios.post('/api/link', values, {
         headers: {
-          'client-ip-address': ip,
           'long-url-title': title
         }
       });
