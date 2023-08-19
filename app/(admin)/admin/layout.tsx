@@ -28,7 +28,7 @@ export default function AdminLayout({
       </main>
       <footer
         className={cn(
-          ' transition-[margin-left] ease-in-out duration-300',
+          'transition-[margin-left] ease-in-out duration-300',
           sidebar?.isOpen === false ? 'lg:ml-[90px]' : 'lg:ml-72'
         )}
       >

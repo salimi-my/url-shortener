@@ -7,7 +7,7 @@ import { ModeToggle } from '@/components/mode-toggle';
 
 const Navbar = () => {
   return (
-    <header className='supports-backdrop-blur:bg-background/60 sticky top-0 w-full shadow dark:shadow-secondary bg-background/95 backdrop-blur'>
+    <header className='z-10 supports-backdrop-blur:bg-background/60 sticky top-0 w-full shadow dark:shadow-secondary bg-background/95 backdrop-blur'>
       <div className='mx-8 flex h-14 items-center'>
         <div className='flex items-center space-x-4 lg:space-x-0'>
           <SheetMenu />

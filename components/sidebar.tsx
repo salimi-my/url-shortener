@@ -16,7 +16,7 @@ const Sidebar = () => {
   return (
     <aside
       className={cn(
-        'fixed top-0 left-0 z-10 h-screen transition-all ease-in-out duration-300',
+        'fixed top-0 left-0 z-20 h-screen transition-all ease-in-out duration-300',
         sidebar?.isOpen === false
           ? '-translate-x-full lg:translate-x-0 w-[90px]'
           : '-translate-x-full lg:translate-x-0 w-72'
@@ -42,7 +42,7 @@ const Sidebar = () => {
               className={cn(
                 'font-extrabold text-lg whitespace-nowrap transition-all ease-in-out duration-300',
                 sidebar?.isOpen === false
-                  ? '-translate-x-96 opacity-0'
+                  ? '-translate-x-96 opacity-0 hidden'
                   : 'translate-x-0 opacity-100'
               )}
             >
