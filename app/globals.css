@@ -47,6 +47,7 @@
 .cl-page p,
 .cl-form p,
 .cl-formFieldLabel,
+.cl-footerActionText,
 .cl-breadcrumbsItemBox a,
 .cl-profileSectionContent p,
 .cl-avatarImageActionsUpload,
@@ -58,6 +59,10 @@
 
 .my-profile .cl-userProfile-root .cl-card {
   @apply rounded-lg shadow w-full max-w-full;
+}
+
+.cl-footerActionLink {
+  @apply dark:text-slate-500/50 dark:hover:text-foreground;
 }
 
 .cl-socialButtonsBlockButton {
