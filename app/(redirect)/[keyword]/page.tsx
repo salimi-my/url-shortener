@@ -20,7 +20,7 @@ const KeywordPage: React.FC<KeywordPageProps> = async ({ params }) => {
   }
 
   // Get country code from Vercel
-  let countryCode = headersList.get('x-vercel-ip-country-region');
+  let countryCode = headersList.get('x-vercel-ip-country');
 
   // Get country code from Cloudflare
   if (!countryCode) countryCode = headersList.get('cf-ipcountry');
