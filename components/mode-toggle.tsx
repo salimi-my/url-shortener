@@ -11,6 +11,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from '@/components/ui/tooltip';
 
 interface ToggleProps {
   float?: boolean;
@@ -21,16 +27,23 @@ export function ModeToggle({ float }: ToggleProps) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger
-        className={cn(float ? 'absolute top-1 right-1' : '')}
-        asChild
-      >
-        <Button className='rounded-full' variant='ghost' size='icon'>
-          <SunIcon className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
-          <MoonIcon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
-          <span className='sr-only'>Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
+      <TooltipProvider disableHoverableContent>
+        <Tooltip delayDuration={100}>
+          <TooltipTrigger asChild>
+            <DropdownMenuTrigger
+              className={cn(float ? 'absolute top-1 right-1' : '')}
+              asChild
+            >
+              <Button className='rounded-full' variant='ghost' size='icon'>
+                <SunIcon className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
+                <MoonIcon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
+                <span className='sr-only'>Switch Theme</span>
+              </Button>
+            </DropdownMenuTrigger>
+          </TooltipTrigger>
+          <TooltipContent side='bottom'>Switch Theme</TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
       <DropdownMenuContent align='end'>
         <DropdownMenuItem onClick={() => setTheme('light')}>
           Light
