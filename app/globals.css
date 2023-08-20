@@ -2,13 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-.cl-userButtonTrigger {
-  @apply hover:opacity-80;
-}
-
 .cl-card.cl-signIn-start,
 .cl-card.cl-signUp-start {
   @apply shadow-none;
+}
+
+.cl-card {
+  @apply dark:bg-background;
 }
 
 .cl-dividerText {
@@ -24,8 +24,16 @@
   @apply dark:bg-slate-950;
 }
 
-.cl-userButtonPopoverCard {
-  @apply dark:border-secondary;
+.cl-headerTitle {
+  @apply dark:text-foreground;
+}
+
+.cl-headerSubtitle {
+  @apply dark:text-foreground;
+}
+
+.cl-profileSectionTitleText {
+  @apply dark:text-foreground;
 }
 
 .cl-navbarButton {
@@ -42,6 +50,14 @@
 
 .cl-userButtonPopoverActionButton {
   @apply dark:hover:bg-secondary;
+}
+
+.cl-formFieldInputShowPasswordButton {
+  @apply focus:shadow-none;
+}
+
+.cl-badge {
+  @apply text-white bg-zinc-900/50;
 }
 
 .cl-accordionTriggerButton p {
@@ -62,28 +78,54 @@
   @apply dark:text-foreground;
 }
 
+.cl-avatarImageActionsUpload {
+  @apply text-zinc-900/90;
+}
+
 .my-profile .cl-userProfile-root .cl-card {
   @apply rounded-lg shadow w-full max-w-full;
 }
 
-.cl-footerActionLink {
-  @apply dark:text-slate-500/50 dark:hover:text-foreground;
-}
-
-.cl-navbarMobileMenuButton {
+.cl-navbarMobileMenuButton,
+.cl-accordionTriggerButton {
   @apply focus:shadow-none focus:ring-2 ring-zinc-900/50;
 }
 
-.cl-socialButtonsBlockButton {
-  @apply dark:hover:bg-secondary dark:text-foreground dark:border-secondary;
+.cl-userButtonTrigger {
+  @apply focus:shadow-none focus:ring ring-zinc-900/50 hover:opacity-80;
 }
 
+.cl-userButtonPopoverCard {
+  @apply shadow-lg border border-gray-100 rounded-lg dark:border-secondary;
+}
+
+.cl-formFieldInput {
+  @apply focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring;
+}
+
+.cl-socialButtonsBlockButton {
+  @apply focus:shadow-none dark:hover:bg-secondary dark:text-foreground dark:border-secondary;
+}
+
+.cl-navbarButton,
 .cl-profileSectionContent button {
   @apply focus:shadow-none focus:ring-2 ring-zinc-900/50 dark:text-foreground dark:hover:bg-secondary;
 }
 
+.cl-formButtonReset {
+  @apply text-gray-900 hover:bg-secondary focus:shadow-none focus:ring-2 ring-zinc-900/50 dark:text-foreground;
+}
+
+.cl-footerActionLink {
+  @apply text-zinc-900 hover:text-zinc-900/90 active:text-zinc-900/90 focus:shadow-none dark:text-slate-500/50 dark:hover:text-foreground;
+}
+
+.cl-profileSectionPrimaryButton {
+  @apply hover:bg-zinc-900/50 active:bg-zinc-900/50 text-zinc-900 hover:text-white font-extrabold focus:shadow-none focus:ring-2 ring-zinc-900/50;
+}
+
 .cl-formButtonPrimary {
-  @apply dark:disabled:bg-secondary-foreground dark:disabled:text-primary-foreground dark:bg-secondary dark:hover:bg-slate-700 dark:text-secondary-foreground;
+  @apply bg-zinc-900 hover:bg-zinc-900/90 active:bg-zinc-900/90 focus:shadow-none dark:disabled:bg-secondary-foreground dark:disabled:text-primary-foreground dark:bg-secondary dark:hover:bg-slate-700 dark:text-secondary-foreground;
 }
 
 @layer base {
