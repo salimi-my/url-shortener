@@ -20,18 +20,18 @@ export const metadata: Metadata = {
   ),
   title: 'URL Shortener — Custom Short Link & Analytics',
   description:
-    'URL Shortener is a free tool to shorten URLs and generate short links URL shortener allows to create a shortened link making it easy to share.',
+    'URL Shortener is a free tool to shorten URLs and generate short links. URL shortener allow users to create custom keyword shortened link making it easy to share.',
   openGraph: {
     url: '/',
     title: 'URL Shortener — Custom Short Link & Analytics',
     description:
-      'URL Shortener is a free tool to shorten URLs and generate short links URL shortener allows to create a shortened link making it easy to share.'
+      'URL Shortener is a free tool to shorten URLs and generate short links. URL shortener allow users to create custom keyword shortened link making it easy to share.'
   },
   twitter: {
     card: 'summary_large_image',
     title: 'URL Shortener — Custom Short Link & Analytics',
     description:
-      'URL Shortener is a free tool to shorten URLs and generate short links URL shortener allows to create a shortened link making it easy to share.'
+      'URL Shortener is a free tool to shorten URLs and generate short links. URL shortener allow users to create custom keyword shortened link making it easy to share.'
   }
 };
 
