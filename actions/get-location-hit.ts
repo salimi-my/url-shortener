@@ -52,10 +52,12 @@ export const getLocationHit = async (
   const regionName = new Intl.DisplayNames(['en'], { type: 'region' });
 
   // Convert logs to a list of arrays
-  const resultList = [...logs].map((item) => [
-    regionName.of(item.countryCode),
-    item._count._all
-  ]);
+  const resultList = [...logs].map((item) => {
+    if (item.countryCode === 'Unknown') {
+      return [item.countryCode, item._count._all];
+    }
+    return [regionName.of(item.countryCode), item._count._all];
+  });
 
   const locationData: LocationData[] = [['Country', 'Hit'], ...resultList];
 
