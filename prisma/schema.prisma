@@ -11,28 +11,28 @@ datasource db {
 }
 
 model Link {
-  id          String @id @default(uuid())
+  id          String    @id @default(uuid())
   userId      String
   title       String
-  keyword     String @unique
+  keyword     String    @unique
   url         String
   ip          String
-  click       Int @default(0)
-  log         Log[] @relation("LinkToLog")
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  click       Int       @default(0)
+  log         Log[]     @relation("LinkToLog")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model Log {
-  id          String @id @default(uuid())
+  id          String    @id @default(uuid())
   linkKeyword String
-  link        Link @relation("LinkToLog", fields: [linkKeyword], references: [keyword], onDelete: Cascade)
-  referrer    String
-  userAgent   String
+  link        Link      @relation("LinkToLog", fields: [linkKeyword], references: [keyword], onDelete: Cascade)
+  referrer    String    @db.Text
+  userAgent   String    @db.Text
   ip          String
   countryCode String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 
   @@index([linkKeyword])
 }
