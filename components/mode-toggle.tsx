@@ -46,15 +46,15 @@ export function ModeToggle({ float }: ToggleProps) {
       </TooltipProvider>
       <DropdownMenuContent align='end'>
         <DropdownMenuItem onClick={() => setTheme('light')}>
-          <SunIcon className='h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 mr-2' />
+          <SunIcon className='h-4 w-4 mr-2 dark:text-foreground' />
           Light
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme('dark')}>
-          <MoonIcon className='h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 mr-2' />
+          <MoonIcon className='h-4 w-4 mr-2 dark:text-foreground' />
           Dark
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme('system')}>
-          <MixerVerticalIcon className='h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 mr-2' />
+          <MixerVerticalIcon className='h-4 w-4 mr-2 dark:text-foreground' />
           System
         </DropdownMenuItem>
       </DropdownMenuContent>

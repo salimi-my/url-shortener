@@ -20,6 +20,10 @@
   @apply dark:bg-secondary;
 }
 
+.cl-navbar {
+  @apply dark:bg-slate-950;
+}
+
 .cl-userButtonPopoverCard {
   @apply dark:border-secondary;
 }
@@ -49,6 +53,7 @@
 .cl-formFieldLabel,
 .cl-footerActionText,
 .cl-breadcrumbsItemBox a,
+.cl-navbarMobileMenuButton,
 .cl-profileSectionContent p,
 .cl-avatarImageActionsUpload,
 .cl-userPreviewTextContainer p,
@@ -63,6 +68,10 @@
 
 .cl-footerActionLink {
   @apply dark:text-slate-500/50 dark:hover:text-foreground;
+}
+
+.cl-navbarMobileMenuButton {
+  @apply focus:shadow-none focus:ring-2 ring-zinc-900/50;
 }
 
 .cl-socialButtonsBlockButton {
