@@ -69,6 +69,7 @@ const UrlModal = () => {
       if (response.data.success) {
         form.reset();
         urlModal.onClose();
+        router.push('/admin/url?page=1&per_page=10');
         router.refresh();
 
         toast({
