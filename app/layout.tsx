@@ -11,9 +11,26 @@ import { ThemeProvider } from '@/providers/theme-provider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : `http://localhost:${process.env.PORT || 3000}`
+  ),
   title: 'URL Shortener — Custom Short Link & Analytics',
   description:
-    'URL Shortener is a free tool to shorten URLs and generate short links URL shortener allows to create a shortened link making it easy to share.'
+    'URL Shortener is a free tool to shorten URLs and generate short links URL shortener allows to create a shortened link making it easy to share.',
+  openGraph: {
+    url: '/',
+    title: 'URL Shortener — Custom Short Link & Analytics',
+    description:
+      'URL Shortener is a free tool to shorten URLs and generate short links URL shortener allows to create a shortened link making it easy to share.'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'URL Shortener — Custom Short Link & Analytics',
+    description:
+      'URL Shortener is a free tool to shorten URLs and generate short links URL shortener allows to create a shortened link making it easy to share.'
+  }
 };
 
 export default function RootLayout({
