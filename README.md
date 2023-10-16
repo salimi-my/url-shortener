@@ -31,10 +31,9 @@ Open the [.env.example](/.env.example) and fill in your Database URL & Clerk Aut
 
 ```bash
 npm install
+npx prisma db push
+npx prisma generate
 npm run dev
-# or
-yarn install
-yarn run dev
 ```
 
 ## Demo
