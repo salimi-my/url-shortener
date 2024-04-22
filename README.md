@@ -8,7 +8,7 @@ URL Shortener is an app to shorten URLs and generate short links created using N
 - Statistics / analytics of links
 - Light / dark / system mode
 - Authentication using Clerk
-- MySQL, PlanetScale & Prisma for database
+- PostgreSQL, Neon & Prisma for database
 - Zustand for state management
 - Hosted in Vercel
 
@@ -19,8 +19,8 @@ URL Shortener is an app to shorten URLs and generate short links created using N
 - Clerk
 - Tailwind CSS
 - TypeScript
-- MySQL
-- PlanetScale
+- PostgreSQL
+- Neon
 - Prisma
 - Zustand
 - Vercel
